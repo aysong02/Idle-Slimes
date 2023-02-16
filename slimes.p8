@@ -9,8 +9,15 @@ function _init()
     x = 10,
     y = 10,
   }
-
-
+  slime1 = {
+  x = 30,
+  y = 30,
+  speed = 0.1,
+  }
+  slimes = {}
+  add_slime()
+  add_slime()
+  add_slime()
 end
 
 function _draw()
@@ -18,16 +25,37 @@ function _draw()
   map()
 	spr(070, cursor.x, cursor.y)
   print(stat(34))
-
-  spr( 069, 60,60 ) 
   pal({[1]=3,[12]=11})
-  memset(0x5f78,0xff,8)
-  spr( 069, 30,30 ) 
+  spr( 069, slime1.x,slime1.y ) 
   pal()
+  
+  for slime in all(slimes) do
+    spr( 069, slime.x,slime.y ) 
+  end
 end
 
+function move_slimes()
+  for slime in all(slimes) do
+      slime.x = slime.x + flr(rnd(3) - 1) * slime.speed
+      slime.y = slime.y + flr(rnd(3) - 1) * slime.speed
+  end
+end
+
+function add_slime()
+  newslime = {x = rnd(50)+30,y = rnd(50)+30,speed = 0.1,}
+  add(slimes, newslime)
+  local slime = slimes[count(slimes)]
+end
+
+-- function _update()
+--   -- move the sprite
+--   slime1.x = slime1.x + flr(rnd(3) - 1) * slime1.speed
+--   slime1.y = slime1.y + flr(rnd(3) - 1) * slime1.speed
+-- end
+
 function _update60()
-	input() 
+  input()
+  move_slimes()
 end
 
 
