@@ -1,6 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
+-->8
 -- init, draw, update, and input
   function _init() 
     poke(0x5F2D, 1)
@@ -11,26 +12,26 @@ __lua__
       h = 1,
       clicking = false,
     }
-  slime1 = {
-  x = 30,
-  y = 30,
-  speed = 0.1,
-  }
-  slimes = {}
-  add_slime()
-  add_slime()
-  add_slime()    
-  poops = {}
-    poopData = {
-      id = 68,
-      w = 8,
-      h = 8
-      }
-    poopCount = 0
-  plantPoop(70, 90)
+    slime1 = {
+    x = 30,
+    y = 30,
+    speed = 0.1,
+    }
+    slimes = {}
+    add_slime()
+    add_slime()
+    add_slime()    
+    poops = {}
+      poopData = {
+        id = 68,
+        w = 8,
+        h = 8
+        }
+      poopCount = 0
+    plantPoop(70, 90)
 
-    gold = 0
-  end
+      gold = 0
+    end
 
   function _draw()
     cls()
@@ -43,51 +44,52 @@ __lua__
     rectfill(105, 9, 120, 10, 5)
     print("gold", 105, 3, 0)
     print(gold, 105, 12, 0)
-   
     print(cursor.clicking, 0, 115, 8)
+    pal({[1]=3,[12]=11})
+    spr( 069, slime1.x,slime1.y ) 
+    pal()
+    
+    for slime in all(slimes) do
+      spr( 069, slime.x,slime.y ) 
+    end
     spr(70, cursor.x, cursor.y)
-  pal({[1]=3,[12]=11})
-  spr( 069, slime1.x,slime1.y ) 
-  pal()
-  
-  for slime in all(slimes) do
-    spr( 069, slime.x,slime.y ) 
   end
-end
-
-function move_slimes()
-  for slime in all(slimes) do
-      slime.x = slime.x + flr(rnd(3) - 1) * slime.speed
-      slime.y = slime.y + flr(rnd(3) - 1) * slime.speed
-  end
-end
-
-function add_slime()
-  newslime = {x = rnd(50)+30,y = rnd(50)+30,speed = 0.1,}
-  add(slimes, newslime)
-  local slime = slimes[count(slimes)]
-  end
-
--- function _update()
---   -- move the sprite
---   slime1.x = slime1.x + flr(rnd(3) - 1) * slime1.speed
---   slime1.y = slime1.y + flr(rnd(3) - 1) * slime1.speed
--- end
-
   function _update60()
     input() 
     updatePoop()
   move_slimes()
-end
+  end
+-->8 
+-- slime movement
+  function move_slimes()
+    for slime in all(slimes) do
+        slime.x = slime.x + flr(rnd(3) - 1) * slime.speed
+        slime.y = slime.y + flr(rnd(3) - 1) * slime.speed
+    end
+  end
 
+  function add_slime()
+    newslime = {x = rnd(50)+30,y = rnd(50)+30,speed = 0.1,}
+    add(slimes, newslime)
+    local slime = slimes[count(slimes)]
+  end
 
-
-
+-->8
+-- unused stuff
+  -- function _update()
+  --   -- move the sprite
+  --   slime1.x = slime1.x + flr(rnd(3) - 1) * slime1.speed
+  --   slime1.y = slime1.y + flr(rnd(3) - 1) * slime1.speed
+  -- end
+-->8
+-- cursor input code
   function input()
       cursor.x = stat(32) - 1
       cursor.y = stat(33) - 1
       cursor.clicking = stat(34) == 1
   end
+
+
 -->8
 -- poop code
   function drawPoop()
@@ -151,18 +153,20 @@ end
     end
   end
   end
+
 -->8
-function collision_aabb(a, b)
-	local a_right_b = a.x > b.x+b.w
-	local a_left_b = a.x+a.w < b.x
-	local a_above_b = a.y+a.h < b.y
-	local a_below_b = a.y > b.y+b.h
-	
-	return not(a_right_b or 
-		a_left_b or 
-		a_above_b or 
-		a_below_b)
-end
+--collision detection
+  function collision_aabb(a, b)
+    local a_right_b = a.x > b.x+b.w
+    local a_left_b = a.x+a.w < b.x
+    local a_above_b = a.y+a.h < b.y
+    local a_below_b = a.y > b.y+b.h
+    
+    return not(a_right_b or 
+      a_left_b or 
+      a_above_b or 
+      a_below_b)
+  end
 
 __gfx__
 777777777777777788888888888888889999999999999999aaaaaaaaaaaaaaaa0000000000000000000000000000000000000000000000000000000000000000
