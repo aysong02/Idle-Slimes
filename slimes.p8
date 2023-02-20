@@ -1,76 +1,127 @@
 pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
--- code modified from class rain.p8
-
-function _init() 
-  poke(0x5F2D, 1)
-  cursor = {
-    x = 10,
-    y = 10,
-    w=1,
-    h=1,
-  }
-  poops = {}
-  poopData = {
-    id=68,
-    w=8,
-    h=8
+-- init, draw, update, and input
+  function _init() 
+    poke(0x5F2D, 1)
+    cursor = {
+      x = 10,
+      y = 10,
+      w = 1,
+      h = 1,
+      clicking = false,
     }
-  poopCount = 0
-  plantPoop(70,90)
-  test = 0
-end
 
-function _draw()
-	cls()
-  map()
-  drawPoop()
-	spr(70, cursor.x, cursor.y)
-  print(test, 0, 120, 8)
-end
+    poops = {}
+    poopData = {
+      id = 68,
+      w = 8,
+      h = 8
+      }
+    poopCount = 0
+    plantPoop(70, 90)
 
-function _update60()
-	input() 
-  updatePoop()
-end
+    slimes = {}
+    slimeData = {
+      id = 69,
+      w = 8,
+      h = 8
+      }
+    slimeCount = 0
+    plantSlime(50, 50)
 
-function input()
-    cursor.x = stat(32) - 1
-    cursor.y = stat(33) - 1
+    gold = 0
+  end
+
+  function _draw()
+    cls()
+    map()
+    drawSlime()
+    drawPoop()
     
-end
-
-function drawPoop()
- for i=1,#poops do
-  if poops[i].valid then 
-    spr(poops[i].frame, poops[i].x, poops[i].y)
+    -- rectfill(0,0,128,128,10)
+    rectfill(98, 0, 127, 63, 6)
+    rectfill(105, 9, 120, 10, 5)
+    print("gold", 105, 3, 0)
+    print(gold, 105, 12, 0)
+   
+    print(cursor.clicking, 0, 115, 8)
+    spr(70, cursor.x, cursor.y)
   end
- end
-end
 
-function plantPoop(x,y)
-  local seed = {
-    x=x,
-    y=x,
-    frame=poopData.id,
-    w=poopData.w,
-    h=poopData.h,
-    valid=true,
-   }
-  poopCount += 1
-  poops[poopCount] = seed
-end
-
-function updatePoop()
- for i=1,#poops do
-  if collision_aabb(cursor, poops[i]) and poops[i].valid == true then
-    test += 1
-    poops[i].valid = false
+  function _update60()
+    input() 
+    updatePoop()
   end
- end
-end
 
+  function input()
+      cursor.x = stat(32) - 1
+      cursor.y = stat(33) - 1
+      cursor.clicking = stat(34) == 1
+  end
+-->8
+-- poop code
+  function drawPoop()
+  for i=1, #poops do
+    if poops[i].valid then 
+      spr(poops[i].frame, poops[i].x, poops[i].y)
+    end
+  end
+  end
+
+  function plantPoop(x, y)
+    local seed = {
+      x = x,
+      y = x,
+      frame = poopData.id,
+      w = poopData.w,
+      h = poopData.h,
+      valid = true,
+    }
+    poopCount += 1
+    poops[poopCount] = seed
+  end
+
+  function updatePoop()
+  for i=1, #poops do
+    if collision_aabb(cursor, poops[i]) and poops[i].valid == true and cursor.clicking then
+      gold += 1
+      poops[i].valid = false
+    end
+  end
+  end
+
+-->8
+-- slime code
+  function drawSlime()
+  for i=1, #slimes do
+    if slimes[i].valid then 
+      spr(slimes[i].frame, slimes[i].x, slimes[i].y)
+    end
+  end
+  end
+
+  function plantSlime(x, y)
+    local seed = {
+      x = x,
+      y = x,
+      frame = slimeData.id,
+      w = slimeData.w,
+      h = slimeData.h,
+      valid = true,
+    }
+    slimeCount += 1
+    slimes[slimeCount] = seed
+  end
+
+  function updateSlime()
+  for i=1, #slimes do
+    if collision_aabb(cursor, poops[i]) and slimes[i].valid == true and cursor.clicking then
+      test += 1
+      slimes[i].valid = false
+    end
+  end
+  end
 -->8
 function collision_aabb(a, b)
 	local a_right_b = a.x > b.x+b.w
@@ -135,7 +186,7 @@ __map__
 4041424142414142414141404141414141414041414141410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 4041414040404040404141404141414141414141414141410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 4041414241414142404141414140414141414141404141410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-4042414141424541404141414141414140414141414141410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+4042414141424141404141414141414140414141414141410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 4041414141414141404140414141414141414140414141410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 4040404040404040404041414141404141414141414141410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 4141414141414141414140414141414141414141414141410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
