@@ -26,6 +26,7 @@ __lua__
     plantPoop(70, 90)
 
       gold = 0
+    
     end
 
   function _draw()
@@ -55,13 +56,13 @@ __lua__
     --Cursor
     spr(70, cursor.x, cursor.y)
   end
-
 -->8 
 -- slime movement
-  function move_slimes()
+  function update_slimes()
     for slime in all(slimes) do
         slime.x = slime.x + flr(rnd(3) - 1) * slime.speed
         slime.y = slime.y + flr(rnd(3) - 1) * slime.speed
+
     end
   end
 
