@@ -4,33 +4,35 @@ __lua__
 -->8
 -- init, draw, update, and input
   function _init() 
-    poke(0x5F2D, 1)
-    cursor = {
-      x = 10,
-      y = 10,
-      w = 1,
-      h = 1,
-      clicking = false,
-    }
-    slime1 = {
-    x = 30,
-    y = 30,
-    speed = 0.1,
-    }
-    slimes = {}
-    add_slime()
-    add_slime()
-    add_slime()    
-    poops = {}
-      poopData = {
-        id = 68,
-        w = 8,
-        h = 8
-        }
-      poopCount = 0
-    plantPoop(70, 90)
+      poke(0x5F2D, 1)
+      cursor = {
+        x = 10,
+        y = 10,
+        w = 1,
+        h = 1,
+        clicking = false,
+      }
+      slime1 = {
+      x = 30,
+      y = 30,
+      speed = 0.1,
+      lastPoop = 0,
+      }
+      slimes = {}
+      add_slime()
+      add_slime()
+      add_slime()    
+      poops = {}
+        poopData = {
+          id = 68,
+          w = 8,
+          h = 8
+          }
+        poopCount = 0
+      plantPoop(70, 90)
 
       gold = 0
+    
     end
 
   function _draw()
@@ -57,14 +59,15 @@ __lua__
   function _update60()
     input() 
     updatePoop()
-  move_slimes()
+    update_slimes()
   end
 -->8 
 -- slime movement
-  function move_slimes()
+  function update_slimes()
     for slime in all(slimes) do
         slime.x = slime.x + flr(rnd(3) - 1) * slime.speed
         slime.y = slime.y + flr(rnd(3) - 1) * slime.speed
+
     end
   end
 
