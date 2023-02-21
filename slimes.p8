@@ -40,7 +40,7 @@ __lua__
   function _update60()
     input() 
     updatePoop()
-    move_slimes()
+    update_slimes()
     animate_slimes()
 
   end
