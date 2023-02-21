@@ -17,27 +17,29 @@ __lua__
     add_slime()
     add_slime()    
     poops = {}
-      poopData = {
-        id = 68,
-        w = 8,
-        h = 8
-        }
-      poopCount = 0
-    plantPoop(70, 90)
-
-      gold = 0
-    
+    poopData = {
+      id = 32,
+      w = 8,
+      h = 8,
+      }
+    initailize_poop()
+    gold = 0
+    dt = 0
+    lastframe = t()
+    gold = 0
     end
 
   function _draw()
     cls()
     map()
-    drawSlime()
     drawPoop()
+    drawSlime()
     draw_ui()
     draw_fence()
   end
   function _update60()
+    dt = t() - lastframe
+    lastframe = t()
     input() 
     updatePoop()
     update_slimes()
@@ -50,7 +52,7 @@ __lua__
     rectfill(105, 9, 120, 10, 5)
     print("gold", 105, 3, 0)
     print(gold, 105, 12, 0)
-    print(cursor.clicking, 0, 115, 8)
+    print(slimes[1].last_poop, 0, 115, 8)
     print(cursor.x, 25, 115, 12)
     print(cursor.y, 35, 115, 13)
     --Cursor
@@ -71,7 +73,11 @@ __lua__
     for slime in all(slimes) do
         slime.x = slime.x + flr(rnd(3) - 1) * slime.speed
         slime.y = slime.y + flr(rnd(3) - 1) * slime.speed
-
+        slime.last_poop += dt
+        if slime.last_poop >= 7 then
+          plantPoop(slime.x, slime.y)
+          slime.last_poop = 0
+        end
     end
   end
 
@@ -82,6 +88,7 @@ __lua__
       speed = 0.1,
       sprite = 1,
       frame = 1,
+      last_poop = 0,
       valid = 1,--not sure if we need this
       }
     add(slimes, newslime)
@@ -102,6 +109,7 @@ __lua__
     end
   end
 
+-->8
 -- cursor input code
   function input()
       cursor.x = stat(32) - 1
@@ -119,7 +127,19 @@ __lua__
     end
   end
   end
-
+  function initailize_poop()
+    for i=1, 10, 1 do
+      local seed = {
+        x = 10,
+        y = 10,
+        frame = poopData.id,
+        w = poopData.w,
+        h = poopData.h,
+        valid = false,
+        }
+        poops[i] = seed
+    end
+  end
   function plantPoop(x, y)
     local seed = {
       x = x,
@@ -129,8 +149,15 @@ __lua__
       h = poopData.h,
       valid = true,
     }
-    poopCount += 1
-    poops[poopCount] = seed
+   
+    for i=1, #poops do
+      if poops[i].valid == false then
+        poops[i] = seed
+        poops[i].x = x
+        poops[i].y = y
+        break
+      end
+    end
   end
 
   function updatePoop()
@@ -167,10 +194,11 @@ __lua__
 
   function updateSlime()
   for i=1, #slimes do
-    if collision_aabb(cursor, poops[i]) and slimes[i].valid == true and cursor.clicking then
-      test += 1
-      slimes[i].valid = false
-    end
+        slime.last_poop += dt
+        if slime.last_poop >= 7 then
+          plantPoop(slime.x, slime.y)
+          slime.last_poop = 0
+        end
   end
   end
 
