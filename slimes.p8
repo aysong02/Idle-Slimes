@@ -14,7 +14,9 @@ __lua__
       h = 1,
       clicking = false,
     }
+    shop_init()
     slimefarm_init()
+
   end
 
   function _draw()
@@ -22,8 +24,11 @@ __lua__
     if(mode == 0) then
       slimefarm_draw()
     elseif(mode == 1) then
-      print("Shop screen?")
+      shop_draw()
     end
+
+    --Cursor is here since we want it to be at the top
+    spr(70, cursor.x, cursor.y)
   end
 
   function _update60()
@@ -33,7 +38,7 @@ __lua__
     if(mode == 0) then
       slimefarm_update()
     elseif(mode == 1) then
-      print("Shop screen?")
+      shop_update()
     end
   end
 
@@ -46,8 +51,8 @@ __lua__
   function slimefarm_init()
     mode = 0
     slimes = {}
-    buttons = {}
-    create_buttons()
+    slibuttons = {}
+    create_slibuttons()
     add_slime()
     add_slime()
     add_slime()    
@@ -70,14 +75,14 @@ __lua__
     drawSlime()
     draw_ui()
     draw_fence()
-    draw_buttons()
+    draw_slibuttons()
   end
 
   function slimefarm_update()
     updatePoop()
     update_slimes()
     animate_slimes()
-    update_buttons()
+    update_slibuttons()
   end
 
   function draw_ui()
@@ -88,11 +93,10 @@ __lua__
     print(slimes[1].last_poop, 0, 115, 8)
     print(cursor.x, 25, 115, 12)
     print(cursor.y, 35, 115, 13)
-    --Cursor
-    spr(70, cursor.x, cursor.y)
+
   end
 
-  function create_buttons()
+  function create_slibuttons()
     shop_button = {
       sprite = 142,
       x = 96,
@@ -100,19 +104,19 @@ __lua__
       h = 16,
       w = 16,
     }
-    add( buttons, shop_button)
+    add( slibuttons, shop_button)
   end
 
-  function draw_buttons()
-    for button in all(buttons) do
+  function draw_slibuttons()
+    for button in all(slibuttons) do
       spr(button.sprite, button.x, button.y, button.w, button.h)
       
     end
     print("shop", 99, 115, 1)
   end
 
-  function update_buttons()
-    if collision_aabb(cursor, buttons[1]) and cursor.clicking then
+  function update_slibuttons()
+    if collision_aabb(cursor, slibuttons[1]) and cursor.clicking then
       mode = 1
     end
   end
@@ -260,6 +264,42 @@ __lua__
   end
   end
 
+---------------
+--Shop Screen--
+---------------
+function shop_init()
+  mode = 1
+  shopbuttons = {{
+      sprite = 142,
+      x = 20,
+      y = 20,
+      h = 16,
+      w = 16,
+    }}
+
+end
+
+function shop_draw()
+  draw_shopbuttons()
+  print("shop screen works!")
+end
+
+function draw_shopbuttons()
+  for button in all(shopbuttons) do
+    spr(button.sprite, button.x, button.y, button.w, button.h)
+  end
+  print("add slime")
+end
+
+function update_shopbuttons()
+  if collision_aabb(cursor, slibuttons[1]) and cursor.clicking then
+    add_slime()
+  end
+end
+
+function shop_update()
+  update_shopbuttons()
+end
 -->8
 --collision detection
   function collision_aabb(a, b)
@@ -273,6 +313,7 @@ __lua__
       a_above_b or 
       a_below_b)
   end
+
 
 __gfx__
 000000000000000000bb770000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070700000000000
