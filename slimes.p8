@@ -4,7 +4,7 @@ __lua__
 -->8
 -- init, draw, update, and input
   function _init() 
-    poke(0x5F2D, 1)
+    poke(0x5F2D, 1) -- necessary for working curor
     cursor = {
       x = 10,
       y = 10,
@@ -12,10 +12,20 @@ __lua__
       h = 1,
       clicking = false,
     }
+    
     slimes = {}
+    slime_metadata = {
+      idle_frame_offset = 1,
+      idle_frames = 3,
+      moving_frame_offset = 16,
+      moving_frames = 3,
+      idle = 0,
+      moving = 1,
+    }
     add_slime()
     add_slime()
     add_slime()    
+    
     poops = {}
     poopData = {
       id = 32,
@@ -23,6 +33,7 @@ __lua__
       h = 8,
       }
     initailize_poop()
+    
     gold = 0
     dt = 0
     lastframe = t()
@@ -33,17 +44,17 @@ __lua__
     cls()
     map()
     drawSlime()
-    drawPoop()
+    draw_poop()
     draw_ui()
     draw_fence()
   end
+  
   function _update60()
     dt = t() - lastframe
     lastframe = t()
     input() 
-    updatePoop()
+    update_poop()
     update_slimes()
-    animate_slimes()
 
   end
 
@@ -68,14 +79,76 @@ __lua__
     end 
   end
 -->8 
--- slime movement
+-- slime code
   function update_slimes()
     for slime in all(slimes) do
-        slime.x = slime.x + flr(rnd(3) - 1) * slime.speed
-        slime.y = slime.y + flr(rnd(3) - 1) * slime.speed
+        -- movement
+        if slime.action == slime_metadata.idle then
+          slime.action_timeleft -= dt
+        elseif slime.action == slime_metadata.moving then
+          slime.action_timeleft -= dt
+          slime.x += slime.speed * cos(slime.move_angle)
+          slime.y += slime.speed * sin(slime.move_angle)
+
+          local min_x_map, max_x_map = 9,80
+          local min_y_map, max_y_map = 23, 104 
+          local hit_fence = false
+          if slime.x > max_x_map or 
+            slime.x < min_x_map or 
+            slime.y > max_y_map or 
+            slime.y < min_y_map then
+            slime.move_angle = rnd(1)
+          end
+
+          if slime.x > max_x_map then
+            slime.x = max_x_map
+          elseif slime.x < min_x_map then
+            slime.x = min_x_map
+          end
+          if slime.y > max_y_map then
+            slime.y = max_y_map
+          elseif slime.y < min_y_map then
+            slime.y = min_y_map
+          end
+          
+
+        end
+
+        if slime.action_timeleft <= 0 then 
+          if slime.action == slime_metadata.idle then
+            slime.action = slime_metadata.moving
+            slime.move_angle = rnd(1)
+          else 
+            slime.action = slime_metadata.idle
+          end
+          local wait_time = 5 -- wait 5-10 seconds for each action,
+          local min_wait = 5
+          slime.action_timeleft = rnd(wait_time) + min_wait     
+        end
+
+        -- animation
+        if slime.action == slime_metadata.idle then 
+          local sprite_offset = slime_metadata.idle_frame_offset
+          local frame_time = 0.1 
+          local stage = flr(t() / frame_time % 20)
+          if stage >= slime_metadata.idle_frames then
+            stage = 0
+          end
+          slime.frame = stage + sprite_offset
+        elseif slime.action == slime_metadata.moving then 
+          local sprite_offset = slime_metadata.moving_frame_offset
+          local frame_time = 0.1
+          local stage = flr(t() / frame_time % 20)
+          if stage >= slime_metadata.moving_frames then
+            stage = 0
+          end
+          slime.frame = stage + sprite_offset
+        end
+
+        -- pooping
         slime.last_poop += dt
         if slime.last_poop >= 7 then
-          plantPoop(slime.x, slime.y)
+          plant_poop(slime.x, slime.y)
           slime.last_poop = 0
         end
     end
@@ -86,27 +159,15 @@ __lua__
       x = rnd(50)+30,
       y = rnd(50)+30,
       speed = 0.1,
-      sprite = 1,
       frame = 1,
       last_poop = 0,
+      action = slime_metadata.idle,
+      move_angle = 0, -- 0 to 1 for movement angle if moving
+      action_timeleft = 6,
       valid = 1,--not sure if we need this
       }
     add(slimes, newslime)
     local slime = slimes[count(slimes)]
-  end
-
-  function animate_slimes()
-  -- TODO
-    for slime in all(slimes) do
-      local sprite_offset = slime.sprite
-      local frame_time = 0.1
-      -- set stage
-      local stage = flr(t() / frame_time % 20)
-      if stage > 2 then
-        stage = 0
-      end
-      slime.frame = stage + sprite_offset
-    end
   end
 
 -->8
@@ -120,7 +181,7 @@ __lua__
 
 -->8
 -- poop code
-  function drawPoop()
+  function draw_poop()
   for i=1, #poops do
     if poops[i].valid then 
       spr(poops[i].frame, poops[i].x, poops[i].y)
@@ -140,7 +201,7 @@ __lua__
         poops[i] = seed
     end
   end
-  function plantPoop(x, y)
+  function plant_poop(x, y)
     local seed = {
       x = x,
       y = x,
@@ -160,7 +221,7 @@ __lua__
     end
   end
 
-  function updatePoop()
+  function update_poop()
   for i=1, #poops do
     if collision_aabb(cursor, poops[i]) and poops[i].valid == true and cursor.clicking then
       gold += 1
@@ -176,29 +237,6 @@ __lua__
     if slimes[i].valid then 
       spr(slimes[i].frame, slimes[i].x, slimes[i].y)
     end
-  end
-  end
-
-  function plantSlime(x, y)
-    local seed = {
-      x = x,
-      y = x,
-      frame = slimeData.id,
-      w = slimeData.w,
-      h = slimeData.h,
-      valid = true,
-    }
-    slimeCount += 1
-    slimes[slimeCount] = seed
-  end
-
-  function updateSlime()
-  for i=1, #slimes do
-        slime.last_poop += dt
-        if slime.last_poop >= 7 then
-          plantPoop(slime.x, slime.y)
-          slime.last_poop = 0
-        end
   end
   end
 
