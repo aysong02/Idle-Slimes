@@ -43,8 +43,8 @@ __lua__
   function _draw()
     cls()
     map()
-    drawSlime()
     draw_poop()
+    drawSlime()
     draw_ui()
     draw_fence()
   end
@@ -130,7 +130,7 @@ __lua__
         if slime.action == slime_metadata.idle then 
           local sprite_offset = slime_metadata.idle_frame_offset
           local frame_time = 0.1 
-          local stage = flr(t() / frame_time % 20)
+          local stage = flr((t() + slime.animation_offset) / frame_time % 20)
           if stage >= slime_metadata.idle_frames then
             stage = 0
           end
@@ -138,7 +138,7 @@ __lua__
         elseif slime.action == slime_metadata.moving then 
           local sprite_offset = slime_metadata.moving_frame_offset
           local frame_time = 0.1
-          local stage = flr(t() / frame_time % 20)
+          local stage = flr((t() + slime.animation_offset) / frame_time % 7)
           if stage >= slime_metadata.moving_frames then
             stage = 0
           end
@@ -164,6 +164,7 @@ __lua__
       action = slime_metadata.idle,
       move_angle = 0, -- 0 to 1 for movement angle if moving
       action_timeleft = 6,
+      animation_offset = flr(rnd(20)),
       valid = 1,--not sure if we need this
       }
     add(slimes, newslime)
