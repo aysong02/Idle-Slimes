@@ -1,9 +1,11 @@
 pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
+
 -->8
 -- init, draw, update, and input
-  function _init() 
+  function _init()
+    mode = 0
     poke(0x5F2D, 1)
     cursor = {
       x = 10,
@@ -12,7 +14,40 @@ __lua__
       h = 1,
       clicking = false,
     }
+    slimefarm_init()
+  end
+
+  function _draw()
+    cls()
+    if(mode == 0) then
+      slimefarm_draw()
+    elseif(mode == 1) then
+      print("Shop screen?")
+    end
+  end
+
+  function _update60()
+    dt = t() - lastframe
+    lastframe = t()
+    input() 
+    if(mode == 0) then
+      slimefarm_update()
+    elseif(mode == 1) then
+      print("Shop screen?")
+    end
+  end
+
+  --
+  -----
+  --Slime Screen
+  -----
+  --
+
+  function slimefarm_init()
+    mode = 0
     slimes = {}
+    buttons = {}
+    create_buttons()
     add_slime()
     add_slime()
     add_slime()    
@@ -27,24 +62,22 @@ __lua__
     dt = 0
     lastframe = t()
     gold = 0
-    end
+  end
 
-  function _draw()
-    cls()
+  function slimefarm_draw()
     map()
-    drawSlime()
     drawPoop()
+    drawSlime()
     draw_ui()
     draw_fence()
+    draw_buttons()
   end
-  function _update60()
-    dt = t() - lastframe
-    lastframe = t()
-    input() 
+
+  function slimefarm_update()
     updatePoop()
     update_slimes()
     animate_slimes()
-
+    update_buttons()
   end
 
   function draw_ui()
@@ -59,7 +92,32 @@ __lua__
     spr(70, cursor.x, cursor.y)
   end
 
-    function draw_fence()
+  function create_buttons()
+    shop_button = {
+      sprite = 142,
+      x = 96,
+      y = 112,
+      h = 16,
+      w = 16,
+    }
+    add( buttons, shop_button)
+  end
+
+  function draw_buttons()
+    for button in all(buttons) do
+      spr(button.sprite, button.x, button.y, button.w, button.h)
+      
+    end
+    print("shop", 99, 115, 1)
+  end
+
+  function update_buttons()
+    if collision_aabb(cursor, buttons[1]) and cursor.clicking then
+      mode = 1
+    end
+  end
+  
+  function draw_fence()
     for i=0,4,1 do
       spr(128,8+16*i,98,2,2)
     end
