@@ -57,9 +57,9 @@ __lua__
     
     slimes = {}
     slime_metadata = {
-      idle_frame_offset = 1,
+      idle_frame_offset = 16,
       idle_frames = 3,
-      moving_frame_offset = 16,
+      moving_frame_offset = 1,
       moving_frames = 3,
       idle = 0,
       moving = 1,
