@@ -94,7 +94,7 @@ __lua__
           slime.y += slime.speed * sin(slime.move_angle)
 
           local min_x_map, max_x_map = 9,80
-          local min_y_map, max_y_map = 23, 180 
+          local min_y_map, max_y_map = 23, 100 
           local hit_fence = false
           if slime.x > max_x_map or 
             slime.x < min_x_map or 
