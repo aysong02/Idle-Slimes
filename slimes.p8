@@ -92,9 +92,7 @@ __lua__
   end
 
   function slimefarm_update()
-    updatePoop()
     update_slimes()
-    animate_slimes()
     update_slibuttons()
     update_poop()
   end
