@@ -42,12 +42,24 @@ __lua__
       shop_update()
     end
   end
+-->8
+-- Opening Scene Screen
+  function opening_init()
+    temp = 0 -- TODO
 
-  --
-  -----
-  --Slime Screen
-  -----
-  --
+  end
+
+  function opening_draw()
+    temp = 0 -- TODO
+  end
+
+
+  function opening_update()
+    temp = 0 -- TODO
+  end
+
+-->8
+-- Slime Screen Functions
 
   function slimefarm_init()
     mode = 0
