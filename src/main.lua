@@ -1,12 +1,13 @@
 -- init, draw, update, and input
 function _init()
   music(0)
-  mode = 0
+
   mode_type = {
     opening = 0,
     shop = 1,
     slime_farm = 2,
   }
+  mode = mode_type.shop
   poke(0x5F2D, 1) -- necessary for working curor
   cursor = {
     x = 10,

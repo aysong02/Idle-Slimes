@@ -3,21 +3,23 @@ function shop_init()
         sprite = 142,
         x = 20,
         y = 20,
-        h = 16,
-        w = 16,
+        h = 2,
+        w = 2,
       }}
 end
   
 function shop_draw()
-    draw_shopbuttons()
+    map(16, 0, 0, 0,128,128)
     print("shop screen works!")
+    draw_shopbuttons()
+    
 end
   
 function draw_shopbuttons()
     for button in all(shopbuttons) do
-      spr(button.sprite, button.x, button.y, button.w, button.h)
+      spr(button.sprite, button.x, button.y,2,2)
+      print(button.sprite,button.x,button.y)
     end
-    print("add slime")
 end
   
 function update_shopbuttons()
