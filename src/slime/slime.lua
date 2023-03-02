@@ -1,6 +1,5 @@
 
 function slimefarm_init()
-    mode = 0
     slimes = {}
     slibuttons = {}
     create_slibuttons()

@@ -9,4 +9,4 @@ function collision_aabb(a, b)
       a_left_b or 
       a_above_b or 
       a_below_b)
-  end
+end

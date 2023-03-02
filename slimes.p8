@@ -6,6 +6,8 @@ __lua__
 #include src/slime/slime.lua
 #include src/draw_ui.lua
 #include src/helper/collision.lua
+#include src/helper/textbox.lua
+#include src/helper/click_release.lua
 #include src/shop.lua
 #include src/slime/poop.lua
 #include src/cursor.lua

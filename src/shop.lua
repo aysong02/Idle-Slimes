@@ -1,5 +1,4 @@
 function shop_init()
-    mode = 1
     shopbuttons = {{
         sprite = 142,
         x = 20,

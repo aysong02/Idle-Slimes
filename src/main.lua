@@ -2,6 +2,11 @@
 function _init()
   music(0)
   mode = 0
+  mode_type = {
+    opening = 0,
+    shop = 1,
+    slime_farm = 2,
+  }
   poke(0x5F2D, 1) -- necessary for working curor
   cursor = {
     x = 10,
@@ -9,19 +14,22 @@ function _init()
     w = 1,
     h = 1,
     clicking = false,
+    prevClick = false,
   }
   shop_init()
   slimefarm_init()
+  opening_init()
 end
 
 function _draw()
   cls()
-  if(mode == 0) then
-    slimefarm_draw()
-  elseif(mode == 1) then
+  if mode == mode_type.opening then
+    opening_draw()
+  elseif mode == mode_type.shop then
     shop_draw()
+  elseif mode == mode_type.slime_farm then
+    slimefarm_draw()
   end
-
   --Cursor is here since we want it to be at the top
   spr(70, cursor.x, cursor.y)
 end
@@ -30,10 +38,12 @@ function _update60()
   dt = t() - lastframe
   lastframe = t()
   input() 
-  if(mode == 0) then
-    slimefarm_update()
-  elseif(mode == 1) then
+  if mode == mode_type.opening then
+    opening_update()
+  elseif mode == mode_type.shop then
     shop_update()
+  elseif mode == mode_type.slime_farm then
+    slimefarm_update()
   end
 end
 
