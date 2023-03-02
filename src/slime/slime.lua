@@ -117,9 +117,9 @@ function update_slimes()
           slime.last_poop = 0
         end
     end
-  end
+end
 
-  function add_slime()
+function add_slime()
     newslime = {
       x = rnd(50)+30,
       y = rnd(50)+30,
@@ -134,12 +134,12 @@ function update_slimes()
       }
     add(slimes, newslime)
     local slime = slimes[count(slimes)]
-  end
+end
   
-  function drawSlime()
+function drawSlime()
     for i=1, #slimes do
       if slimes[i].valid then 
         spr(slimes[i].frame, slimes[i].x, slimes[i].y)
       end
     end
-  end
+end
