@@ -32,7 +32,9 @@ function _draw()
     slimefarm_draw()
   end
   --Cursor is here since we want it to be at the top
-  spr(70, cursor.x, cursor.y)
+  spr(72, cursor.x, cursor.y)
+  print(cursor.x, 25, 115, 12)
+  print(cursor.y, 35, 115, 13)
 end
 
 function _update60()

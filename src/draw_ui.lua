@@ -6,8 +6,6 @@ function draw_ui()
     -- spr(80, 105,3,16,16)
     print(gold, 105, 12, 0)
     print(slimes[1].last_poop, 0, 115, 8)
-    print(cursor.x, 25, 115, 12)
-    print(cursor.y, 35, 115, 13)
     -- cursor
     spr(70, cursor.x, cursor.y)
 end
