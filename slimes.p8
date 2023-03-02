@@ -3,11 +3,11 @@ version 39
 __lua__
 #include src/main.lua
 #include src/opening_screen.lua
-#include src/slime.lua
+#include src/slime/slime.lua
 #include src/draw_ui.lua
-#include src/collision.lua
+#include src/helper/collision.lua
 #include src/shop.lua
-#include src/poop.lua
+#include src/slime/poop.lua
 #include src/cursor.lua
 __gfx__
 000000000000000000bb770000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070700000000000

@@ -1,11 +1,3 @@
-function draw_poop()
-    for i=1, #poops do
-      if poops[i].valid then 
-        spr(poops[i].frame, poops[i].x, poops[i].y)
-      end
-    end
-end
-
 function initailize_poop()
     for i=1, 10, 1 do
         local seed = {
@@ -17,6 +9,14 @@ function initailize_poop()
             valid = false,
             }
             poops[i] = seed
+    end
+end
+
+function draw_poop()
+    for i=1, #poops do
+      if poops[i].valid then 
+        spr(poops[i].frame, poops[i].x, poops[i].y)
+      end
     end
 end
 

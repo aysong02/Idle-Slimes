@@ -1,5 +1,4 @@
 
--- Slime Screen Functions
 function slimefarm_init()
     mode = 0
     slimes = {}
@@ -51,10 +50,7 @@ end
 function update_slimes()
     for slime in all(slimes) do
         -- movement
-        if slime.action == slime_metadata.idle then
-          slime.action_timeleft -= dt
-        elseif slime.action == slime_metadata.moving then
-          slime.action_timeleft -= dt
+        if slime.action == slime_metadata.moving then
           slime.x += slime.speed * cos(slime.move_angle)
           slime.y += slime.speed * sin(slime.move_angle)
 
@@ -79,9 +75,10 @@ function update_slimes()
             slime.y = min_y_map
           end
           
-
         end
 
+        -- update slime action
+        slime.action_timeleft -= dt
         if slime.action_timeleft <= 0 then 
           if slime.action == slime_metadata.idle then
             slime.action = slime_metadata.moving
