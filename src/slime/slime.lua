@@ -13,9 +13,12 @@ function slimefarm_init()
         idle = 0,
         moving = 1,
     }
+    hunger_metadata = {
+      happy_emote_frame = 22,
+      almost_unhappy_frame = 24,
+      unhappy_emote_frame = 25,
+    }
     add_slime()
-    add_slime()
-    add_slime()    
 
     poops = {}
     poopData = {
@@ -115,6 +118,11 @@ function update_slimes()
           plant_poop(slime.x, slime.y)
           slime.last_poop = 0
         end
+
+        if slime.happiness > 0 then
+          slime.happiness -= 1/10
+        end
+          
     end
 end
 
@@ -129,6 +137,7 @@ function add_slime()
       move_angle = 0, -- 0 to 1 for movement angle if moving
       action_timeleft = 6,
       animation_offset = flr(rnd(20)),
+      happiness = 100,
       valid = 1,--not sure if we need this
       }
     add(slimes, newslime)
@@ -139,6 +148,17 @@ function drawSlime()
     for i=1, #slimes do
       if slimes[i].valid then 
         spr(slimes[i].frame, slimes[i].x, slimes[i].y)
+        
+        local emote_frame = -1
+        if slimes[i].happiness > 50 then
+          emote_frame = hunger_metadata.happy_emote_frame
+        elseif slimes[i].happiness > 1 then
+          emote_frame = hunger_metadata.almost_unhappy_frame
+        else 
+          emote_frame = hunger_metadata.unhappy_emote_frame
+        end
+        spr(26, slimes[i].x + 5, slimes[i].y - 10, 2, 2)
+        spr(emote_frame, slimes[i].x + 10, slimes[i].y - 9)
       end
     end
 end

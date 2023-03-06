@@ -4,7 +4,7 @@
 
 -- text box code
 
-function tb_init(voice,string) -- this function starts and defines a text box.
+function tb_init(voice, string) -- this function starts and defines a text box.
     reading=true -- sets reading to true when a text box has been called.
     tb={ -- table containing all properties of a text box. i like to work with tables, but you could use global variables if you preffer.
     str=string, -- the strings. remember: this is the table of strings you passed to this function when you called on _update()
