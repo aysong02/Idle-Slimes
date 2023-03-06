@@ -25,18 +25,44 @@ function shop_init()
         price = "69",
       },
     }
+    leftbuttons ={
+      {
+        x = 7,
+        y = 64,
+        h=29,
+        w=7,
+      }
+    }
+    rightbuttons ={
+      {
+        x = 109,
+        y = 64,
+        h=29,
+        w=7,
+      }
+    }
+    lefti = 1
+    inum = (#shopitems)
 end
 
 function shop_draw()
     map(16, 0, 0, 0,128,128)
     draw_shopbuttons()
-    
+    print(lefti)
 end
 
 
 
 function draw_shopbuttons()
-  onscreen = {shopitems[3],shopitems[1],shopitems[2]}
+  --This was a horrible implementation but it works :)
+  if lefti == 0 then
+    onscreen = {shopitems[inum],shopitems[1],shopitems[2]}
+  elseif lefti == inum-1 then
+    onscreen = {shopitems[inum-1],shopitems[inum],shopitems[1]}
+  else
+    onscreen = {shopitems[lefti],shopitems[lefti+1],shopitems[lefti+2]}
+  end
+
   i=0
   for tempi in all(onscreen) do
     xcord = 24 + i*32
@@ -58,10 +84,20 @@ function draw_shopbuttons()
 end
   
 function check_scroll()
-    if collision_aabb(cursor, slibuttons[1]) and cursor.clicking then
-      add_slime()
+  for button in all(rightbuttons) do
+    if collision_aabb(cursor, button) and click_release() then
+      lefti+=1
+      lefti= lefti%(inum)
     end
+  end
+  for button in all(leftbuttons) do
+    if collision_aabb(cursor, button) and click_release() then
+      lefti-=1
+      lefti= lefti%(inum)
+    end
+  end
 end
+
   
 function shop_update()
     check_scroll()
