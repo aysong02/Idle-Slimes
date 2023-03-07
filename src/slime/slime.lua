@@ -27,10 +27,9 @@ function slimefarm_init()
         }
     initailize_poop()
 
-    gold = 0
     dt = 0
     lastframe = t()
-    gold = 0
+    gold = 500
 end
 
 function slimefarm_draw()
