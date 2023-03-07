@@ -82,7 +82,7 @@ function update_slimes()
         -- update slime action
         slime.action_timeleft -= dt
         if slime.action_timeleft <= 0 then 
-          if slime.action == slime_metadata.idle then
+          if slime.action == slime_metadata.idle and slime.happiness != 0 then
             slime.action = slime_metadata.moving
             slime.move_angle = rnd(1)
           else 
@@ -121,6 +121,8 @@ function update_slimes()
 
         if slime.happiness > 0 then
           slime.happiness -= 1/10
+        else 
+          slime.happiness = 0
         end
           
     end
@@ -157,8 +159,12 @@ function drawSlime()
         else 
           emote_frame = hunger_metadata.unhappy_emote_frame
         end
-        spr(26, slimes[i].x + 5, slimes[i].y - 10, 2, 2)
-        spr(emote_frame, slimes[i].x + 10, slimes[i].y - 9)
+        if flr(t()) % 10 < 3  or slimes[i].happiness == 0 then 
+          spr(26, slimes[i].x + 5, slimes[i].y - 10, 2, 2)
+          spr(emote_frame, slimes[i].x + 10, slimes[i].y - 9)
+        end
+
+        
       end
     end
 end
