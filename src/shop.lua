@@ -41,14 +41,35 @@ function shop_init()
         w=7,
       }
     }
+    shopcontainers ={
+      {
+        x = 24,
+        y = 66,
+        h=15,
+        w=15,
+      },
+      {
+        x = 56,
+        y = 66,
+        h=15,
+        w=15,
+      },
+      {
+        x = 88,
+        y = 66,
+        h=15,
+        w=15,
+      }
+    }
     lefti = 1
     inum = (#shopitems)
+    buttontest =0
 end
 
 function shop_draw()
     map(16, 0, 0, 0,128,128)
     draw_shopbuttons()
-    print(lefti)
+    print(buttontest)
 end
 
 
@@ -81,6 +102,9 @@ function draw_shopbuttons()
   --draw arrows
   spr(76,10,74)
   spr(76,110,74,1,1,1)
+
+  --draw exit button 
+  spr(122,120)
 end
   
 function check_scroll()
@@ -98,8 +122,21 @@ function check_scroll()
   end
 end
 
+function check_buy()
+  for button in all(shopcontainers) do
+    if collision_aabb(cursor, button) and click_release() then
+      add_slime()
+      buttontest +=1
+    end
+  end
+
+  if collision_aabb(cursor, {x=120,y=0,h=8,w=8}) and click_release() then
+    mode = mode_type.slime_farm
+  end
+end
   
 function shop_update()
     check_scroll()
+    check_buy()
 end
   

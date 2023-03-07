@@ -18,7 +18,6 @@ function slimefarm_init()
       almost_unhappy_frame = 24,
       unhappy_emote_frame = 25,
     }
-    add_slime()
 
     poops = {}
     poopData = {
