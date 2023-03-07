@@ -12,12 +12,15 @@ function slimefarm_init()
         moving_frames = 3,
         idle = 0,
         moving = 1,
+        held = 2,
     }
     hunger_metadata = {
       happy_emote_frame = 22,
       almost_unhappy_frame = 24,
       unhappy_emote_frame = 25,
     }
+    add_slime()
+    add_slime()
     add_slime()
 
     poops = {}
@@ -44,8 +47,8 @@ function slimefarm_draw()
 end
 
 function slimefarm_update()
-    update_slimes()
     update_slibuttons()
+    update_slimes()
     update_poop()
 end
 
@@ -55,37 +58,44 @@ function update_slimes()
         if slime.action == slime_metadata.moving then
           slime.x += slime.speed * cos(slime.move_angle)
           slime.y += slime.speed * sin(slime.move_angle)
-
-          local min_x_map, max_x_map = 9,80
-          local min_y_map, max_y_map = 23, 100 
-          local hit_fence = false
-          if slime.x > max_x_map or 
-            slime.x < min_x_map or 
-            slime.y > max_y_map or 
-            slime.y < min_y_map then
-            slime.move_angle = rnd(1)
+        elseif slime.action == slime_metadata.held then
+          slime.x = cursor.x
+          slime.y = cursor.y
+          if click_release() then
+            slime.action = slime_metadata.moving
+            slime.action_timeleft = 0
           end
-
-          if slime.x > max_x_map then
-            slime.x = max_x_map
-          elseif slime.x < min_x_map then
-            slime.x = min_x_map
-          end
-          if slime.y > max_y_map then
-            slime.y = max_y_map
-          elseif slime.y < min_y_map then
-            slime.y = min_y_map
-          end
-          
         end
 
+        -- out of bounds movement
+        local min_x_map, max_x_map = 9,80
+        local min_y_map, max_y_map = 23, 100 
+        local hit_fence = false
+        if slime.x > max_x_map or 
+          slime.x < min_x_map or 
+          slime.y > max_y_map or 
+          slime.y < min_y_map then
+          slime.move_angle = rnd(1)
+        end
+
+        if slime.x > max_x_map then
+          slime.x = max_x_map
+        elseif slime.x < min_x_map then
+          slime.x = min_x_map
+        end
+        if slime.y > max_y_map then
+          slime.y = max_y_map
+        elseif slime.y < min_y_map then
+          slime.y = min_y_map
+        end
+        
         -- update slime action
         slime.action_timeleft -= dt
         if slime.action_timeleft <= 0 then 
           if slime.action == slime_metadata.idle and slime.happiness != 0 then
             slime.action = slime_metadata.moving
             slime.move_angle = rnd(1)
-          else 
+          elseif slime.action == slime_metadata.moving then
             slime.action = slime_metadata.idle
           end
           local wait_time = 5 -- wait 5-10 seconds for each action,
@@ -132,6 +142,8 @@ function add_slime()
     newslime = {
       x = rnd(50)+30,
       y = rnd(50)+30,
+      w = 8,
+      h = 8,
       speed = 0.1,
       frame = 1,
       last_poop = 0,
@@ -159,11 +171,12 @@ function drawSlime()
         else 
           emote_frame = hunger_metadata.unhappy_emote_frame
         end
-        if flr(t()) % 10 < 3  or slimes[i].happiness == 0 then 
+        local speech_waittime = 10
+        local speech_duration = 3
+        if flr(t()) % speech_waittime < speech_duration or slimes[i].happiness == 0 then 
           spr(26, slimes[i].x + 5, slimes[i].y - 10, 2, 2)
           spr(emote_frame, slimes[i].x + 10, slimes[i].y - 9)
         end
-
         
       end
     end

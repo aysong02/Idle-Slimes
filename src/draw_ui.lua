@@ -5,7 +5,7 @@ function draw_ui()
     print("gold", 105, 3, 0)
     -- spr(80, 105,3,16,16)
     print(gold, 105, 12, 0)
-    print(slimes[1].happiness, 0, 115, 8)
+    print(slimes[1].action_timeleft, 0, 115, 8)
     -- cursor
     spr(70, cursor.x, cursor.y)
 end
@@ -30,8 +30,23 @@ end
 
 function update_slibuttons()
     if collision_aabb(cursor, slibuttons[1]) and cursor.clicking then
-        mode = 1
+        mode = mode_type.farm
     end
+    
+    -- feed slimes
+    -- for slime in all(slimes) do
+    --     if collision_aabb(cursor, slime) and click_press() then
+    --         slime.happiness = 100
+    --         break
+    --     end
+    -- end
+    for slime in all(slimes) do
+        if collision_aabb(cursor, slime) and click_press() then
+            slime.action = slime_metadata.held
+            break
+        end
+    end
+
 end
 
 function draw_fence()
