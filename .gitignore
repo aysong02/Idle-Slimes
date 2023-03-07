@@ -1,4 +1,5 @@
 backup/
+activity_log.txt
 # Compiled Lua sources
 luac.out
 

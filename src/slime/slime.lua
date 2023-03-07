@@ -20,8 +20,6 @@ function slimefarm_init()
       unhappy_emote_frame = 25,
     }
     add_slime()
-    add_slime()
-    add_slime()
 
     poops = {}
     poopData = {
@@ -54,73 +52,9 @@ end
 
 function update_slimes()
     for slime in all(slimes) do
-        -- movement
-        if slime.action == slime_metadata.moving then
-          slime.x += slime.speed * cos(slime.move_angle)
-          slime.y += slime.speed * sin(slime.move_angle)
-        elseif slime.action == slime_metadata.held then
-          slime.x = cursor.x
-          slime.y = cursor.y
-          if click_release() then
-            slime.action = slime_metadata.moving
-            slime.action_timeleft = 0
-          end
-        end
-
-        -- out of bounds movement
-        local min_x_map, max_x_map = 9,80
-        local min_y_map, max_y_map = 23, 100 
-        local hit_fence = false
-        if slime.x > max_x_map or 
-          slime.x < min_x_map or 
-          slime.y > max_y_map or 
-          slime.y < min_y_map then
-          slime.move_angle = rnd(1)
-        end
-
-        if slime.x > max_x_map then
-          slime.x = max_x_map
-        elseif slime.x < min_x_map then
-          slime.x = min_x_map
-        end
-        if slime.y > max_y_map then
-          slime.y = max_y_map
-        elseif slime.y < min_y_map then
-          slime.y = min_y_map
-        end
-        
-        -- update slime action
-        slime.action_timeleft -= dt
-        if slime.action_timeleft <= 0 then 
-          if slime.action == slime_metadata.idle and slime.happiness != 0 then
-            slime.action = slime_metadata.moving
-            slime.move_angle = rnd(1)
-          elseif slime.action == slime_metadata.moving then
-            slime.action = slime_metadata.idle
-          end
-          local wait_time = 5 -- wait 5-10 seconds for each action,
-          local min_wait = 5
-          slime.action_timeleft = rnd(wait_time) + min_wait     
-        end
-
-        -- animation
-        if slime.action == slime_metadata.idle then 
-          local sprite_offset = slime_metadata.idle_frame_offset
-          local frame_time = 0.1 
-          local stage = flr((t() + slime.animation_offset) / frame_time % 20)
-          if stage >= slime_metadata.idle_frames then
-            stage = 0
-          end
-          slime.frame = stage + sprite_offset
-        elseif slime.action == slime_metadata.moving then 
-          local sprite_offset = slime_metadata.moving_frame_offset
-          local frame_time = 0.1
-          local stage = flr((t() + slime.animation_offset) / frame_time % 7)
-          if stage >= slime_metadata.moving_frames then
-            stage = 0
-          end
-          slime.frame = stage + sprite_offset
-        end
+        update_slime_movement(slime)
+        update_slime_action(slime)
+        update_slime_animation(slime)
 
         -- pooping
         slime.last_poop += dt
@@ -129,12 +63,13 @@ function update_slimes()
           slime.last_poop = 0
         end
 
+        -- happiness
+        local happiness_decay = 1 --happiness lost per second
         if slime.happiness > 0 then
-          slime.happiness -= 1/10
+          slime.happiness -= happiness_decay / 60
         else 
           slime.happiness = 0
         end
-          
     end
 end
 

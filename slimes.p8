@@ -4,6 +4,9 @@ __lua__
 #include src/main.lua
 #include src/opening_screen.lua
 #include src/slime/slime.lua
+#include src/slime/slime_movement.lua
+#include src/slime/slime_action.lua
+#include src/slime/slime_animation.lua
 #include src/draw_ui.lua
 #include src/helper/collision.lua
 #include src/helper/textbox.lua

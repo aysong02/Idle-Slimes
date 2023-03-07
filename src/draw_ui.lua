@@ -5,7 +5,7 @@ function draw_ui()
     print("gold", 105, 3, 0)
     -- spr(80, 105,3,16,16)
     print(gold, 105, 12, 0)
-    print(slimes[1].action_timeleft, 0, 115, 8)
+    print(slimes[1].happiness, 0, 115, 8)
     -- cursor
     spr(70, cursor.x, cursor.y)
 end
