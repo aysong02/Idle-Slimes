@@ -5,27 +5,27 @@ function draw_ui()
     print("gold", 105, 3, 0)
     -- spr(80, 105,3,16,16)
     print(gold, 105, 12, 0)
-    print(slimes[1].happiness, 0, 115, 8)
+    -- print(slimes[1].happiness, 0, 115, 8)
+    -- print(slimes[1].last_poop, 0, 115, 8)
     -- cursor
     spr(70, cursor.x, cursor.y)
 end
 
 function create_slibuttons()
     shop_button = {
-        sprite = 142,
-        x = 96,
+        sprite = 110,
+        x = 112,
         y = 112,
         h = 16,
         w = 16,
     }
-    add( slibuttons, shop_button)
+    add(slibuttons, shop_button)
 end
 
 function draw_slibuttons()
     for button in all(slibuttons) do
         spr(button.sprite, button.x, button.y, button.w, button.h)
     end
-    print("shop", 99, 115, 1)
 end
 
 function update_slibuttons()

@@ -4,39 +4,90 @@ function shop_init()
         sprite = 001,
         name = "Green slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = "10",
+        price = 1,
       },
       {
         sprite = 005,
         name = "Red slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = "900",
+        price = 900,
       },
       {
         sprite = 006,
         name = "Yellow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = "69",
+        price = 69,
       },
       {
         sprite = 007,
         name = "Rainbow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = "69",
+        price = 69,
       },
     }
+    leftbuttons ={
+      {
+        x = 7,
+        y = 64,
+        h=29,
+        w=7,
+      }
+    }
+    rightbuttons ={
+      {
+        x = 109,
+        y = 64,
+        h=29,
+        w=7,
+      }
+    }
+    shopcontainers ={
+      {
+        num = 1,
+        x = 24,
+        y = 66,
+        h=15,
+        w=15,
+      },
+      {
+        num = 2,
+        x = 56,
+        y = 66,
+        h=15,
+        w=15,
+      },
+      {
+        num = 3,
+        x = 88,
+        y = 66,
+        h=15,
+        w=15,
+      }
+    }
+    lefti = 1
+    inum = (#shopitems)
+    buttontest =0
 end
 
 function shop_draw()
     map(16, 0, 0, 0,128,128)
     draw_shopbuttons()
-    
+    print(buttontest)
+    print(gold,9,10,1)
 end
 
 
 
 function draw_shopbuttons()
-  onscreen = {shopitems[3],shopitems[1],shopitems[2]}
+  --This was a horrible implementation but it works :)
+  if lefti == 0 then
+    onscreen = {shopitems[inum],shopitems[1],shopitems[2]}
+  elseif lefti == inum-1 then
+    onscreen = {shopitems[inum-1],shopitems[inum],shopitems[1]}
+  else
+    onscreen = {shopitems[lefti],shopitems[lefti+1],shopitems[lefti+2]}
+  end
+
   i=0
   for tempi in all(onscreen) do
     xcord = 24 + i*32
@@ -55,15 +106,44 @@ function draw_shopbuttons()
   --draw arrows
   spr(76,10,74)
   spr(76,110,74,1,1,1)
+
+  --draw exit button 
+  spr(122,120)
 end
   
 function check_scroll()
-    if collision_aabb(cursor, slibuttons[1]) and cursor.clicking then
-      add_slime()
+  for button in all(rightbuttons) do
+    if collision_aabb(cursor, button) and click_release() then
+      lefti+=1
+      lefti= lefti%(inum)
     end
+  end
+  for button in all(leftbuttons) do
+    if collision_aabb(cursor, button) and click_release() then
+      lefti-=1
+      lefti= lefti%(inum)
+    end
+  end
+end
+
+function check_buy()
+  for button in all(shopcontainers) do
+    if collision_aabb(cursor, button) and click_release() then
+      if gold >= onscreen[button.num].price then
+        add_slime()
+        gold -= onscreen[button.num].price
+        buttontest +=1
+      end
+    end
+  end
+
+  if collision_aabb(cursor, {x=120,y=0,h=8,w=8}) and click_release() then
+    mode = mode_type.slime_farm
+  end
 end
   
 function shop_update()
     check_scroll()
+    check_buy()
 end
   
