@@ -30,22 +30,22 @@ end
 
 function update_slibuttons()
     if collision_aabb(cursor, slibuttons[1]) and cursor.clicking then
-        mode = mode_type.farm
+        mode = mode_type.shop
     end
     
     -- feed slimes
-    -- for slime in all(slimes) do
-    --     if collision_aabb(cursor, slime) and click_press() then
-    --         slime.happiness = 100
-    --         break
-    --     end
-    -- end
     for slime in all(slimes) do
         if collision_aabb(cursor, slime) and click_press() then
-            slime.action = slime_metadata.held
+            slime.happiness = 100
             break
         end
     end
+    -- for slime in all(slimes) do
+    --     if collision_aabb(cursor, slime) and click_press() then
+    --         slime.action = slime_metadata.held
+    --         break
+    --     end
+    -- end
 
 end
 

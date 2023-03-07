@@ -62,7 +62,7 @@ function update_slimes()
         end
 
         -- happiness
-        local happiness_decay = 1 --happiness lost per second
+        local happiness_decay = 20 --happiness lost per second
         if slime.happiness > 0 then
           slime.happiness -= happiness_decay / 60
         else 
