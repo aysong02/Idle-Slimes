@@ -1,28 +1,35 @@
 function shop_init()
+    slime_pals = {
+      red = {[11]=8, [10]=9, [3]=2},
+      yellow = {[11]=9, [10]=9, [3]=4},
+    }
     shopitems = {
       {
         sprite = 001,
         name = "Green slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 1,
+        color = {}
       },
       {
         sprite = 005,
         name = "Red slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 900,
+        price = 300,
+        color = {[11]=8, [10]=9, [3]=2},
       },
       {
         sprite = 006,
         name = "Yellow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 69,
+        color = {[11]=10, [10]=9, [3]=4}
       },
       {
         sprite = 007,
         name = "Rainbow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 69,
+        price = 99999,
       },
     }
     leftbuttons ={
@@ -130,7 +137,7 @@ function check_buy()
   for button in all(shopcontainers) do
     if collision_aabb(cursor, button) and click_release() then
       if gold >= onscreen[button.num].price then
-        add_slime()
+        add_slime(onscreen[button.num].color)
         gold -= onscreen[button.num].price
         buttontest +=1
       end

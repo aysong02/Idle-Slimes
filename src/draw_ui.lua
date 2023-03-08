@@ -34,18 +34,18 @@ function update_slibuttons()
     end
     
     -- feed slimes
-    for slime in all(slimes) do
-        if collision_aabb(cursor, slime) and click_press() then
-            slime.happiness = 100
-            break
-        end
-    end
     -- for slime in all(slimes) do
     --     if collision_aabb(cursor, slime) and click_press() then
-    --         slime.action = slime_metadata.held
+    --         slime.happiness = 100
     --         break
     --     end
     -- end
+    for slime in all(slimes) do
+        if collision_aabb(cursor, slime) and click_press() then
+            slime.action = slime_metadata.held
+            break
+        end
+    end
 
 end
 

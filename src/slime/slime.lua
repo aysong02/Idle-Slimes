@@ -71,7 +71,7 @@ function update_slimes()
     end
 end
 
-function add_slime()
+function add_slime(ncolor)
     newslime = {
       x = rnd(50)+30,
       y = rnd(50)+30,
@@ -86,6 +86,7 @@ function add_slime()
       animation_offset = flr(rnd(20)),
       happiness = 100,
       valid = 1,--not sure if we need this
+      color = ncolor,
       }
     add(slimes, newslime)
     local slime = slimes[count(slimes)]
@@ -93,7 +94,9 @@ end
   
 function drawSlime()
     for i=1, #slimes do
-      if slimes[i].valid then 
+      if slimes[i].valid then
+        pal()
+        pal(slimes[i].color)
         spr(slimes[i].frame, slimes[i].x, slimes[i].y)
         
         local emote_frame = -1
@@ -110,7 +113,7 @@ function drawSlime()
           spr(26, slimes[i].x + 5, slimes[i].y - 10, 2, 2)
           spr(emote_frame, slimes[i].x + 10, slimes[i].y - 9)
         end
-        
+        pal()
       end
     end
 end
