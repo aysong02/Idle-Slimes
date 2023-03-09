@@ -101,7 +101,7 @@ function drawSlime()
         pal()
         pal(slimes[i].color)
         spr(slimes[i].frame, slimes[i].x, slimes[i].y)
-        
+        pal()
         local emote_frame = -1
         if slimes[i].happiness > 50 then
           emote_frame = hunger_metadata.happy_emote_frame

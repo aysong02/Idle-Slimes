@@ -15,9 +15,9 @@ function draw_ui()
    
     -- debug prints
     -- print(cursor.clicking, 0, 115, 8)
-    if #slimes >0 then
-        print(slimes[1].happiness, 0, 115, 8)
-    end
+    -- if #slimes >0 then
+    --     print(slimes[1].happiness, 0, 115, 8)
+    -- end
 end
 
 function create_slibuttons()
