@@ -1,11 +1,14 @@
 
 function draw_ui()
-    print(gold, 105, 2, 1)
-
-    local start_x, start_y = 12 * 8, 4 * 8
-    for i = 0,5,1 do 
+    print(gold, 96, 4,8)
+    pal(4,5)
+    spr(224,96,0,4,2)
+    pal()
+    local start_x, start_y = 12 * 8, 2 * 8
+    for i = 0,9,1 do 
         local horizontal_offset = (i % 2) * 16
         local vertical_offset = flr(i / 2) * 16
+        pal(15,134,1)
         spr(142, start_x + horizontal_offset , start_y + vertical_offset, 2, 2)
     end
    

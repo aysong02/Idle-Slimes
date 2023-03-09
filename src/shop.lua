@@ -78,7 +78,13 @@ end
 function shop_draw()
     map(16, 0, 0, 0,128,128)
     draw_shopbuttons()
-    print(gold,9,10,1)
+    
+    spr(194, 0, 101, 1, 1, true, false)
+    spr(211, 120, 106, 1, 1, true, false)
+
+    pal(15,134,1)
+    spr(224,7,7,4,2)
+    print(gold,20,12,0)
 end
 
 
@@ -113,7 +119,7 @@ function draw_shopbuttons()
   spr(76,110,74,1,1,1)
 
   --draw exit button 
-  spr(122,120)
+  spr(204,112,0,2,2)
 end
   
 function check_scroll()
@@ -141,7 +147,7 @@ function check_buy()
     end
   end
 
-  if collision_aabb(cursor, {x=120,y=0,h=8,w=8}) and click_release() then
+  if collision_aabb(cursor, {x=112,y=0,h=16,w=16}) and click_release() then
     mode = mode_type.slime_farm
   end
 end
