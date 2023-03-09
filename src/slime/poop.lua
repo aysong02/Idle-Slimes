@@ -42,7 +42,7 @@ end
   
 function update_poop()
     for i=1, #poops do
-        if collision_aabb(cursor, poops[i]) and poops[i].valid == true and cursor.clicking then
+        if collision_aabb(cursor, poops[i]) and poops[i].valid == true and click_press() then
             gold += 1
             poops[i].valid = false
         end
