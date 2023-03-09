@@ -1,9 +1,10 @@
 
 function draw_ui()
-    print(gold, 96, 4,8)
+
     pal(4,5)
     spr(224,96,0,4,2)
     pal()
+    print(gold, 96+13, 0+6,0)
     local start_x, start_y = 12 * 8, 2 * 8
     for i = 0,9,1 do 
         local horizontal_offset = (i % 2) * 16

@@ -84,7 +84,7 @@ function shop_draw()
 
     pal(15,134,1)
     spr(224,7,7,4,2)
-    print(gold,20,12,0)
+    print(gold,20,13,0)
 end
 
 
