@@ -13,6 +13,7 @@ function slimefarm_init()
         idle = 0,
         moving = 1,
         held = 2,
+        ded = 17,
     }
     hunger_metadata = {
       happy_emote_frame = 22,
@@ -30,7 +31,7 @@ function slimefarm_init()
 
     dt = 0
     lastframe = t()
-    gold = 500
+    gold = 1
 end
 
 function slimefarm_draw()
@@ -55,16 +56,18 @@ function update_slimes()
         update_slime_animation(slime)
 
         -- pooping
-        slime.last_poop += dt
+        if slime.happiness != 0 then
+          slime.last_poop += dt
+        end
         if slime.last_poop >= 7 then
           plant_poop(slime.x, slime.y)
           slime.last_poop = 0
         end
 
         -- happiness
-        local happiness_decay = 20 --happiness lost per second
+        local happiness_decay = 50 --happiness lost per minute
         if slime.happiness > 0 then
-          slime.happiness -= happiness_decay / 60
+          slime.happiness -= happiness_decay / 3600
         else 
           slime.happiness = 0
         end

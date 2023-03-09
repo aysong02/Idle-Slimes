@@ -1,14 +1,19 @@
 
 function draw_ui()
-    rectfill(98, 0, 127, 63, 6)
-    rectfill(105, 9, 120, 10, 5)
-    print("gold", 105, 3, 0)
-    -- spr(80, 105,3,16,16)
-    print(gold, 105, 12, 0)
-    -- print(slimes[1].happiness, 0, 115, 8)
-    -- print(slimes[1].last_poop, 0, 115, 8)
-    -- cursor
-    spr(70, cursor.x, cursor.y)
+    print(gold, 105, 2, 1)
+
+    local start_x, start_y = 12 * 8, 4 * 8
+    for i = 0,5,1 do 
+        local horizontal_offset = (i % 2) * 16
+        local vertical_offset = flr(i / 2) * 16
+        spr(142, start_x + horizontal_offset , start_y + vertical_offset, 2, 2)
+    end
+   
+    -- debug prints
+    -- print(cursor.clicking, 0, 115, 8)
+    if #slimes >0 then
+        print(slimes[1].happiness, 0, 115, 8)
+    end
 end
 
 function create_slibuttons()
@@ -34,14 +39,15 @@ function update_slibuttons()
     end
     
     -- feed slimes
-    -- for slime in all(slimes) do
-    --     if collision_aabb(cursor, slime) and click_press() then
-    --         slime.happiness = 100
-    --         break
-    --     end
-    -- end
     for slime in all(slimes) do
         if collision_aabb(cursor, slime) and click_press() then
+            slime.happiness = 100
+            break
+        end
+    end
+    -- drag slimes
+    for slime in all(slimes) do
+        if collision_aabb(cursor, slime) and click_press(click_type.r_click) then
             slime.action = slime_metadata.held
             break
         end

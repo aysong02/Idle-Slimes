@@ -15,14 +15,14 @@ function shop_init()
         sprite = 005,
         name = "Red slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 300,
+        price = 10,
         color = {[11]=8, [10]=9, [3]=2},
       },
       {
         sprite = 006,
         name = "Yellow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 69,
+        price = 50,
         color = {[11]=10, [10]=9, [3]=4}
       },
       {
@@ -73,13 +73,11 @@ function shop_init()
     }
     lefti = 1
     inum = (#shopitems)
-    buttontest =0
 end
 
 function shop_draw()
     map(16, 0, 0, 0,128,128)
     draw_shopbuttons()
-    print(buttontest)
     print(gold,9,10,1)
 end
 
@@ -139,7 +137,6 @@ function check_buy()
       if gold >= onscreen[button.num].price then
         add_slime(onscreen[button.num].color)
         gold -= onscreen[button.num].price
-        buttontest +=1
       end
     end
   end
