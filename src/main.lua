@@ -6,6 +6,10 @@ function _init()
     shop = 1,
     slime_farm = 2,
   }
+  click_type = {
+    l_click = 1,
+    r_click = 2,
+  }
   mode = mode_type.opening
   poke(0x5F2D, 1) -- necessary for working curor
   cursor = {
@@ -30,10 +34,11 @@ function _draw()
   elseif mode == mode_type.slime_farm then
     slimefarm_draw()
   end
-  --Cursor is here since we want it to be at the top
+  -- Cursor is here since we want it to be at the top
   spr(72, cursor.x, cursor.y)
-  print(cursor.x, 25, 115, 12)
-  print(cursor.y, 35, 115, 13)
+  -- debug prints
+  -- print(cursor.x, cursor.x, cursor.y + 8, 12)
+  -- print(cursor.y, cursor.x, cursor.y + 13, 13)
 end
 
 function _update60()

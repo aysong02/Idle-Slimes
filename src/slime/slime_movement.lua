@@ -6,7 +6,7 @@ function update_slime_movement(slime)
     elseif slime.action == slime_metadata.held then
         slime.x = cursor.x
         slime.y = cursor.y
-        if click_release() then
+        if click_release(click_type.r_click) then
             slime.action = slime_metadata.moving
             slime.action_timeleft = 0
         end
