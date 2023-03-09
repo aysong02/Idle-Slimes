@@ -31,7 +31,7 @@ function slimefarm_init()
 
     dt = 0
     lastframe = t()
-    gold = 1
+    gold = 100
 end
 
 function slimefarm_draw()
@@ -60,7 +60,7 @@ function update_slimes()
           slime.last_poop += dt
         end
         if slime.last_poop >= 7 then
-          plant_poop(slime.x, slime.y)
+          plant_poop(slime.x, slime.y,slime.color)
           slime.last_poop = 0
         end
 

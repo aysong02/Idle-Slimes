@@ -7,6 +7,7 @@ function initailize_poop()
             w = poopData.w,
             h = poopData.h,
             valid = false,
+            color = {}
             }
             poops[i] = seed
     end
@@ -14,13 +15,15 @@ end
 
 function draw_poop()
     for i=1, #poops do
-      if poops[i].valid then 
+      if poops[i].valid then
+        pal(poops[i].color)
         spr(poops[i].frame, poops[i].x, poops[i].y)
+        pal()
       end
     end
 end
 
-function plant_poop(x, y)
+function plant_poop(x, y,color)
     local seed = {
     x = x,
     y = x,
@@ -28,6 +31,7 @@ function plant_poop(x, y)
     w = poopData.w,
     h = poopData.h,
     valid = true,
+    color = color
     }
     
     for i=1, #poops do
