@@ -1,2 +1,2 @@
 # Idle-Slimes
-Pico8 Idle
+Pico8 Idle Slimes
