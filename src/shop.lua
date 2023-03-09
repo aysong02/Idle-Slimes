@@ -29,7 +29,7 @@ function shop_init()
         sprite = 007,
         name = "Rainbow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 99999,
+        price = 9999,
       },
     }
     leftbuttons ={

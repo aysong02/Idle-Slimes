@@ -29,7 +29,7 @@ function draw_slibuttons()
 end
 
 function update_slibuttons()
-    if collision_aabb(cursor, slibuttons[1]) and cursor.clicking then
+    if collision_aabb(cursor, slibuttons[1]) and click_release() then
         mode = mode_type.shop
     end
     
