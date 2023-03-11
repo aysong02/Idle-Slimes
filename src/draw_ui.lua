@@ -4,9 +4,13 @@ function draw_ui()
 
     local start_x, start_y = 12 * 8, 4 * 8
     for i = 0,5,1 do 
+        if inventory_select_no == i then
+            pal(5, 11)
+        end
         local horizontal_offset = (i % 2) * 16
         local vertical_offset = flr(i / 2) * 16
         spr(142, start_x + horizontal_offset , start_y + vertical_offset, 2, 2)
+        pal()
     end
    
     -- debug prints
