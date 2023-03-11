@@ -7,10 +7,14 @@ function draw_ui()
     print(gold, 96+13, 0+6,0)
     local start_x, start_y = 12 * 8, 2 * 8
     for i = 0,9,1 do 
+        if inventory_select_no == i then
+            pal(5, 11)
+        end
         local horizontal_offset = (i % 2) * 16
         local vertical_offset = flr(i / 2) * 16
         pal(15,134,1)
         spr(142, start_x + horizontal_offset , start_y + vertical_offset, 2, 2)
+        pal()
     end
    
     -- debug prints

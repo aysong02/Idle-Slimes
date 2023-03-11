@@ -3,7 +3,6 @@ function slimefarm_init()
     slimes = {}
     slibuttons = {}
     create_slibuttons()
-
     slimes = {}
     slime_metadata = {
         idle_frame_offset = 16,
@@ -20,7 +19,6 @@ function slimefarm_init()
       almost_unhappy_frame = 24,
       unhappy_emote_frame = 25,
     }
-
     poops = {}
     poopData = {
         id = 32,
@@ -28,7 +26,7 @@ function slimefarm_init()
         h = 8,
         }
     initailize_poop()
-
+    inventory_select_no = 0
     dt = 0
     lastframe = t()
     gold = 100
