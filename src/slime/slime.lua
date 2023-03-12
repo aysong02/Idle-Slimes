@@ -24,7 +24,7 @@ function slimefarm_init()
         id = 32,
         w = 8,
         h = 8,
-        }
+    }
     initailize_poop()
     inventory_select_no = 0
     dt = 0

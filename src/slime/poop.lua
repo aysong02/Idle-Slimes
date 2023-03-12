@@ -24,16 +24,18 @@ function draw_poop()
 end
 
 function plant_poop(x, y,color)
+    type_set = flr(rnd(2))
     local seed = {
     x = x,
     y = x,
-    frame = poopData.id,
+    frame = poopData.id+type_set,
     w = poopData.w,
     h = poopData.h,
     valid = true,
     color = color
     }
     
+
     for i=1, #poops do
         if poops[i].valid == false then
             poops[i] = seed
