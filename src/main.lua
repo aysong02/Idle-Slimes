@@ -14,6 +14,7 @@ function _init()
   mode = mode_type.opening
   poke(0x5F2D, 1) -- necessary for working curor
   cursor = {
+    sprite = 64,
     x = 10,
     y = 10,
     w = 1,
@@ -39,7 +40,7 @@ function _draw()
     crops_draw()
   end
   -- Cursor is here since we want it to be at the top
-  spr(88, cursor.x, cursor.y)
+  spr(cursor.sprite, cursor.x, cursor.y)
   -- debug prints
   -- print(cursor.x, cursor.x, cursor.y + 8, 12)
   -- print(cursor.y, cursor.x, cursor.y + 13, 13)

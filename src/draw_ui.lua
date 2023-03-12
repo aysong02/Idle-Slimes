@@ -1,12 +1,4 @@
 
-function draw_ui()
-    draw_inventory()
-    -- debug prints
-    -- print(cursor.clicking, 0, 115, 8)
-    -- if #slimes >0 then
-    --     print(slimes[1].happiness, 0, 115, 8)
-    -- end
-end
 
 function create_slibuttons()
     shop_button = {
@@ -17,7 +9,7 @@ function create_slibuttons()
         w = 16,
     }
     crop_button = {
-        sprite = 105,
+        sprite = 72,
         x = 96,
         y = 112,
         h = 16,

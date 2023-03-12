@@ -12,14 +12,14 @@ function shop_init()
         color = {}
       },
       {
-        sprite = 005,
+        sprite = 001,
         name = "Red slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 10,
         color = {[11]=8, [10]=9, [3]=2},
       },
       {
-        sprite = 006,
+        sprite = 001,
         name = "Yellow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 50,
@@ -104,7 +104,9 @@ function draw_shopbuttons()
     xcord = 24 + i*32
     ycord = 66
     rectfill( xcord+1, ycord+1, xcord+15, ycord+15, 13)
+    pal(tempi.color)
     spr(tempi.sprite, xcord+5, ycord+4,1,1)
+    pal()
     print(tempi.price,xcord+6, ycord+20)
     spr(123,xcord-4, ycord + 18)
     i+=1
