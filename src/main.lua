@@ -11,6 +11,9 @@ function _init()
     l_click = 1,
     r_click = 2,
   }
+  inventory = {
+
+  }
   mode = mode_type.opening
   poke(0x5F2D, 1) -- necessary for working curor
   cursor = {
@@ -42,8 +45,8 @@ function _draw()
   -- Cursor is here since we want it to be at the top
   spr(cursor.sprite, cursor.x, cursor.y)
   -- debug prints
-  -- print(cursor.x, cursor.x, cursor.y + 8, 12)
-  -- print(cursor.y, cursor.x, cursor.y + 13, 13)
+  print(cursor.x, cursor.x, cursor.y + 8, 12)
+  print(cursor.y, cursor.x, cursor.y + 13, 13)
 end
 
 function _update60()

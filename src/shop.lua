@@ -3,13 +3,19 @@ function shop_init()
       red = {[11]=8, [10]=9, [3]=2},
       yellow = {[11]=9, [10]=9, [3]=4},
     }
+    item_types = {
+      slime = 0,
+      seeds = 1,
+    }
     shopitems = {
       {
         sprite = 001,
         name = "Green slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 1,
-        color = {}
+        color = {},
+        bigItem = 0,
+        item_type = item_types.slime,
       },
       {
         sprite = 001,
@@ -17,19 +23,41 @@ function shop_init()
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 10,
         color = {[11]=8, [10]=9, [3]=2},
+        bigItem = 0,
+        item_type = item_types.slime,
       },
       {
         sprite = 001,
         name = "Yellow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 50,
-        color = {[11]=10, [10]=9, [3]=4}
+        color = {[11]=10, [10]=9, [3]=4},
+        bigItem = 0,
+        item_type = item_types.slime,
       },
       {
         sprite = 007,
         name = "Rainbow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 9999,
+        bigItem = 0,
+        item_type = item_types.slime,
+      },
+      {
+        sprite = 100,
+        name = "Rose seeds",
+        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        price = 10,
+        bigItem = 1,
+        item_type = item_types.seeds,
+      },
+      {
+        sprite = 78,
+        name = "Vroooomba",
+        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        price = 10,
+        bigItem = 1,
+        item_type = item_types.seeds,
       },
     }
     leftbuttons ={
@@ -84,10 +112,13 @@ function shop_draw()
 
     pal(15,134,1)
     spr(224,7,7,4,2)
-    print(gold,20,13,0)
+    print(soul,20,13,0)
 end
 
-
+function shop_update()
+  check_scroll()
+  check_buy()
+end
 
 function draw_shopbuttons()
   --This was a horrible implementation but it works :)
@@ -105,7 +136,12 @@ function draw_shopbuttons()
     ycord = 66
     rectfill( xcord+1, ycord+1, xcord+15, ycord+15, 13)
     pal(tempi.color)
-    spr(tempi.sprite, xcord+5, ycord+4,1,1)
+    --Check if the item is 16 bit or not
+    if tempi.bigItem == 1 then
+      spr(tempi.sprite, xcord, ycord,2,2)
+    else
+      spr(tempi.sprite, xcord+5, ycord+4,1,1)
+    end
     pal()
     print(tempi.price,xcord+6, ycord+20)
     spr(123,xcord-4, ycord + 18)
@@ -142,9 +178,18 @@ end
 function check_buy()
   for button in all(shopcontainers) do
     if collision_aabb(cursor, button) and click_release() then
-      if gold >= onscreen[button.num].price then
-        add_slime(onscreen[button.num].color)
-        gold -= onscreen[button.num].price
+      --Check if you have enough soul
+      curritem = onscreen[button.num]
+      if soul >= curritem.price then
+        soul -= curritem.price
+
+        --Check what kind of purchase it is
+        if curritem.item_type == item_types.slime then
+          add_slime(curritem.color)
+        elseif curritem.item_type == item_types.seeds then
+          add_to_inv(curritem)
+        end
+        
       end
     end
   end
@@ -153,9 +198,11 @@ function check_buy()
     mode = mode_type.slime_farm
   end
 end
-  
-function shop_update()
-    check_scroll()
-    check_buy()
+
+function add_to_inv(item)
+  add(inventory,item)
 end
+
+
+
   

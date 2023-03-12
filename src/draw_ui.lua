@@ -63,7 +63,7 @@ function draw_inventory()
     pal(4,5)
     spr(224,96,0,4,2)
     pal()
-    print(gold, 96+13, 0+6,0)
+    print(soul, 96+13, 0+6,0)
     local start_x, start_y = 12 * 8, 2 * 8
     for i = 0,9,1 do 
         if inventory_select_no == i then
@@ -74,7 +74,27 @@ function draw_inventory()
         pal(15,134,1)
         spr(142, start_x + horizontal_offset , start_y + vertical_offset, 2, 2)
         pal()
+
+        --Render item
+        tempi = inventory[i+1]
+        if tempi then
+            pal(tempi.color)
+            --Check if the item is 16 bit or not
+            if tempi.bigItem == 1 then
+                spr(tempi.sprite, start_x + horizontal_offset,start_y + vertical_offset,2,2)
+            else
+                spr(tempi.sprite, start_x + horizontal_offset+5, start_y + horizontal_offset+4,1,1)
+            end
+            pal()
+        end
     end
+    --Inventory arrows
     spr(68, 6*16 ,12*8 , 2, 2)
     spr(68, 7*16 ,12*8 , 2, 2,1)
+
+    --debug inv
+    -- for item in all(inventory) do
+    --     print(item)
+    -- end
+    
 end

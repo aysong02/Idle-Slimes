@@ -29,7 +29,7 @@ function slimefarm_init()
     inventory_select_no = 0
     dt = 0
     lastframe = t()
-    gold = 100
+    soul = 100
 end
 
 function slimefarm_draw()
