@@ -5,6 +5,7 @@ function _init()
     opening = 0,
     shop = 1,
     slime_farm = 2,
+    crops = 3,
   }
   click_type = {
     l_click = 1,
@@ -23,6 +24,7 @@ function _init()
   shop_init()
   slimefarm_init()
   opening_init()
+  crops_init()
 end
 
 function _draw()
@@ -33,6 +35,8 @@ function _draw()
     shop_draw()
   elseif mode == mode_type.slime_farm then
     slimefarm_draw()
+  elseif mode == mode_type.crops then
+    crops_draw()
   end
   -- Cursor is here since we want it to be at the top
   spr(88, cursor.x, cursor.y)
@@ -51,6 +55,8 @@ function _update60()
     shop_update()
   elseif mode == mode_type.slime_farm then
     slimefarm_update()
+  elseif mode == mode_type.crops then
+    crops_update()
   end
 end
 

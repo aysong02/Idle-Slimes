@@ -36,9 +36,9 @@ function slimefarm_draw()
     map()
     draw_poop()
     drawSlime()
-    draw_ui()
     draw_fence()
     draw_slibuttons()
+    draw_inventory()
 end
 
 function slimefarm_update()
