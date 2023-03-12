@@ -83,4 +83,6 @@ function draw_inventory()
         spr(142, start_x + horizontal_offset , start_y + vertical_offset, 2, 2)
         pal()
     end
+    spr(68, 6*16 ,12*8 , 2, 2)
+    spr(68, 7*16 ,12*8 , 2, 2,1)
 end
