@@ -27,7 +27,6 @@ function slimefarm_init()
         h = 8,
     }
     initailize_poop()
-    inventory_select_no = 0
     dt = 0
     lastframe = t()
     soul = 100
@@ -46,6 +45,7 @@ function slimefarm_update()
     update_slibuttons()
     update_slimes()
     update_poop()
+    update_invslots()
 end
 
 function update_slimes()
