@@ -65,26 +65,29 @@ function draw_inventory()
     pal()
     print(soul, 96+13, 0+6,0)
     local start_x, start_y = 12 * 8, 2 * 8
+    onscreen_inv={}
     for i = 0,9,1 do 
         if inventory_select_no == i then
-            pal(5, 11)
+            -- Note to andrew probably dont use pallete here maybe just use the rect fill
+            -- pal(5, 11)
         end
         local horizontal_offset = (i % 2) * 16
         local vertical_offset = flr(i / 2) * 16
         pal(15,134,1)
         spr(142, start_x + horizontal_offset , start_y + vertical_offset, 2, 2)
-        pal()
+        -- pal()
 
         --Render item
         tempi = inventory[i+1]
         if tempi then
-            pal(tempi.color)
+            -- pal(tempi.color)
             --Check if the item is 16 bit or not
             if tempi.bigItem == 1 then
                 spr(tempi.sprite, start_x + horizontal_offset,start_y + vertical_offset,2,2)
             else
                 spr(tempi.sprite, start_x + horizontal_offset+5, start_y + horizontal_offset+4,1,1)
             end
+            print(tempi.quanity,start_x + horizontal_offset+5, start_y + horizontal_offset+4,0)
             pal()
         end
     end
@@ -96,5 +99,4 @@ function draw_inventory()
     -- for item in all(inventory) do
     --     print(item)
     -- end
-    
 end

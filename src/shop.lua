@@ -49,6 +49,7 @@ function shop_init()
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 10,
         bigItem = 1,
+        quantity = 1,
         item_type = item_types.seeds,
       },
       {
@@ -57,6 +58,7 @@ function shop_init()
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 10,
         bigItem = 1,
+        quantity = 1,
         item_type = item_types.seeds,
       },
     }
@@ -200,6 +202,14 @@ function check_buy()
 end
 
 function add_to_inv(item)
+  --Check if item exists in inventory if it does increment it
+  for invitem in all(inventory) do
+    if invitem.name == item.name then
+      invitem.quantity += item.quantity
+      return
+    end
+  end
+  -- if it doesnt add it
   add(inventory,item)
 end
 

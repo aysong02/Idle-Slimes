@@ -15,9 +15,10 @@ function slimefarm_init()
         ded = 17,
     }
     hunger_metadata = {
-      happy_emote_frame = 22,
-      almost_unhappy_frame = 24,
-      unhappy_emote_frame = 25,
+      happy_emote_frame = 19,
+      almost_unhappy_frame = 21,
+      unhappy_emote_frame = 22,
+      bubble_frame = 14,
     }
     poops = {}
     poopData = {
@@ -111,7 +112,7 @@ function drawSlime()
         local speech_waittime = 10
         local speech_duration = 3
         if flr(t()) % speech_waittime < speech_duration or slimes[i].happiness == 0 then 
-          spr(26, slimes[i].x + 5, slimes[i].y - 10, 2, 2)
+          spr(hunger_metadata.bubble_frame, slimes[i].x + 5, slimes[i].y - 10, 2, 2)
           spr(emote_frame, slimes[i].x + 10, slimes[i].y - 9)
         end
         pal()

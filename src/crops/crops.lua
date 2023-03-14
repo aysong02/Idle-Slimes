@@ -17,7 +17,7 @@ function crops_init()
     }
     cropsfield = {}
     next_field_loc = {x = 16, y = 16}
-    for i = 0,10 do
+    for i = 0,2 do
         add_field()
     end
 end
