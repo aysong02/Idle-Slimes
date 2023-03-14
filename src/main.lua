@@ -13,7 +13,7 @@ function _init()
   }
   inventory = {
   }
-  inventory_select_no = 1
+  inventory_select_no = 0
   mode = mode_type.opening
   poke(0x5F2D, 1) -- necessary for working curor
   cursor = {

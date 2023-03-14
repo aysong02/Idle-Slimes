@@ -66,7 +66,7 @@ function draw_inventory()
     print(soul, 96+13, 0+6,0)
     local start_x, start_y = 12 * 8, 2 * 8
     onscreen_inv={}
-    print(inventory_select_no)
+    -- print(inventory_select_no)
     for i = 0,9,1 do 
         local horizontal_offset = (i % 2) * 16
         local vertical_offset = flr(i / 2) * 16
@@ -109,6 +109,20 @@ function update_invslots()
         local vertical_offset = flr(i / 2) * 16
         if collision_aabb(cursor, {x = (start_x + horizontal_offset), y =(start_y + vertical_offset), h=16,w=16}) and click_press() then
             inventory_select_no = i
+
         end
     end
+end
+
+function check_use_item()
+    if click_press(click_type.r_click) then
+        local temp = inventory[inventory_select_no+1]
+        if temp then
+            temp.quantity -= 1
+            --remove item from inventory if used up
+            if(temp.quantity == 0) then
+                del(inventory, temp)
+            end
+        end
+    end 
 end
