@@ -32,9 +32,11 @@ end
 function update_cropsbuttons()
     if collision_aabb(cursor, cropsbuttons[1]) and click_release() then
         mode = mode_type.shop
+        sfx(15)
     end
     if collision_aabb(cursor, cropsbuttons[2]) and click_release() then
         mode = mode_type.slime_farm
+        sfx(15)
     end
 end
 function draw_cropsbuttons()

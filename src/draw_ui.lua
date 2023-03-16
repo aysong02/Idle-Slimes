@@ -28,9 +28,11 @@ end
 function update_slibuttons()
     if collision_aabb(cursor, slibuttons[1]) and click_release() then
         mode = mode_type.shop
+        sfx(15)
     end
     if collision_aabb(cursor, slibuttons[2]) and click_release() then
         mode = mode_type.crops
+        sfx(15)
     end
     
     -- feed slimes

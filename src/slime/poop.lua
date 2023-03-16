@@ -50,6 +50,7 @@ function update_poop()
     for i=1, #poops do
         if collision_aabb(cursor, poops[i]) and poops[i].valid == true and click_press() then
             soul += poops[i].value
+            sfx(19)
             poops[i].valid = false
         end
     end

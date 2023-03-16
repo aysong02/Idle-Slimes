@@ -198,6 +198,7 @@ function check_buy()
       curritem = onscreen[button.num]
       if soul >= curritem.price then
         soul -= curritem.price
+        sfx(16)
 
         --Check what kind of purchase it is
         if curritem.item_type == item_types.slime then
@@ -214,6 +215,7 @@ function check_buy()
 
   if collision_aabb(cursor, {x=112,y=0,h=16,w=16}) and click_release() then
     mode = mode_type.slime_farm
+    sfx(15)
   end
 end
 
