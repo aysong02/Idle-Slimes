@@ -17,7 +17,7 @@ function _init()
   mode = mode_type.opening
   poke(0x5F2D, 1) -- necessary for working curor
   cursor = {
-    sprite = 64,
+    sprite = 8,
     x = 10,
     y = 10,
     w = 1,
@@ -25,6 +25,8 @@ function _init()
     clicking = false,
     prevClick = false,
   }
+  soul = 500
+  soul_sprite = 51
   shop_init()
   slimefarm_init()
   opening_init()

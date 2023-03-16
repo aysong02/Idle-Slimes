@@ -1,14 +1,14 @@
 function crops_init()
     cropsbuttons ={
         {
-            sprite = 110,
+            sprite = 64,
             x = 112,
             y = 112,
             h = 16,
             w = 16,
         },
         {
-            sprite = 70,
+            sprite = 96,
             x = 96,
             y = 112,
             h = 16,
@@ -16,7 +16,7 @@ function crops_init()
         }
     }
     cropsfield = {}
-    next_field_loc = {x = 16, y = 16}
+    next_field_loc = {x = 8, y = 24}
 end
 function crops_draw()
     map(32, 0, 0, 0,128,128)
@@ -48,7 +48,7 @@ end
 
 function add_field()
     newfield={
-        sprite = 170, 
+        sprite = 174, 
         x = next_field_loc.x,
         y = next_field_loc.y,
         h = 16,
@@ -63,9 +63,9 @@ function add_field()
 
     --Update next field location
     next_field_loc.x+=16
-    if next_field_loc.x > 64 then
-        next_field_loc.x = 16
-        next_field_loc.y += 16  
+    if next_field_loc.x > 80 then
+        next_field_loc.x = 8
+        next_field_loc.y += 20  
     end
 end
 

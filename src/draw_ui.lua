@@ -2,14 +2,14 @@
 
 function create_slibuttons()
     shop_button = {
-        sprite = 110,
+        sprite = 64,
         x = 112,
         y = 112,
         h = 16,
         w = 16,
     }
     crop_button = {
-        sprite = 72,
+        sprite = 96,
         x = 96,
         y = 112,
         h = 16,
@@ -56,9 +56,9 @@ function draw_fence()
     for i=0,4,1 do
         spr(128,8+16*i,98,2,2)
     end
-    for i=0,4,1 do
-        spr(128,8+16*i,9,2,2)
-    end 
+    -- for i=0,4,1 do
+    --     spr(128,8+16*i,9,2,2)
+    -- end 
 end
 
 function draw_inventory()
@@ -96,8 +96,8 @@ function draw_inventory()
         end
     end
     --Inventory arrows
-    spr(68, 6*16 ,12*8 , 2, 2)
-    spr(68, 7*16 ,12*8 , 2, 2,1)
+    spr(96, 6*16 ,12*8 , 2, 2)
+    spr(96, 7*16 ,12*8 , 2, 2)
     --debug inv
     -- for item in all(inventory) do
     --     print(item)

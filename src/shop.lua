@@ -8,6 +8,7 @@ function shop_init()
       seeds = 1,
       plot = 2,
       food = 3,
+      roomba = 4,
     }
     shopitems = {
       {
@@ -41,7 +42,7 @@ function shop_init()
         poop_value = 10
       },
       {
-        sprite = 007,
+        sprite = 023,
         name = "Rainbow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 9999,
@@ -50,7 +51,7 @@ function shop_init()
         poop_value = 0
       },
       {
-        sprite = 100,
+        sprite = 170,
         name = "berry drop seeds",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 10,
@@ -60,7 +61,7 @@ function shop_init()
         --plant stuff
         plant_spr_data = {{136},{137},{138},{138,139},{156,140}},
         product = {
-          sprite = 100,
+          sprite = 185,
           name = "berry drop",
           desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
           bigItem = 0,
@@ -70,20 +71,20 @@ function shop_init()
 
       },
       {
-        sprite = 78,
+        sprite = 10,
         name = "Vroooomba",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 10,
         bigItem = 1,
         quantity = 1,
-        item_type = item_types.seeds,
+        item_type = item_types.roomba,
       },
       {
-        sprite = 22,
+        sprite = 172,
         name = "crop plot",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 9,
-        bigItem = 0,
+        bigItem = 1,
         quantity = 1,
         item_type = item_types.plot,
       },
@@ -173,7 +174,7 @@ function draw_shopbuttons()
     end
     pal()
     print(tempi.price,xcord+6, ycord+20)
-    spr(123,xcord-4, ycord + 18)
+    spr(soul_sprite,xcord-4, ycord + 18)
     i+=1
   end
   xcord = 56
@@ -182,8 +183,8 @@ function draw_shopbuttons()
   rect(56,66,56+16,66+16,11)
 
   --draw arrows
-  spr(76,10,74)
-  spr(76,110,74,1,1,1)
+  spr(141,10,74)
+  spr(141,110,74,1,1,1)
 
   --draw exit button 
   spr(204,112,0,2,2)
@@ -220,6 +221,8 @@ function check_buy()
           add_to_inv(curritem)
         elseif curritem.item_type == item_types.plot then
           add_field()
+        elseif curritem.item_type == item_types.roomba then
+          add_to_inv(curritem)
         end
         
       end

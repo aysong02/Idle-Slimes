@@ -29,7 +29,7 @@ function slimefarm_init()
     initailize_poop()
     dt = 0
     lastframe = t()
-    soul = 100
+
 end
 
 function slimefarm_draw()
