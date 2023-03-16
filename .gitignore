@@ -1,5 +1,8 @@
 backup/
 activity_log.txt
+config.txt
+log.txt
+sdl_controllers.txt
 # Compiled Lua sources
 luac.out
 

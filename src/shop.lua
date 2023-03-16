@@ -17,6 +17,7 @@ function shop_init()
         color = {},
         bigItem = 0,
         item_type = item_types.slime,
+        poop_value = 1
       },
       {
         sprite = 001,
@@ -26,6 +27,7 @@ function shop_init()
         color = {[11]=8, [10]=9, [3]=2},
         bigItem = 0,
         item_type = item_types.slime,
+        poop_value = 5,
       },
       {
         sprite = 001,
@@ -35,6 +37,7 @@ function shop_init()
         color = {[11]=10, [10]=9, [3]=4},
         bigItem = 0,
         item_type = item_types.slime,
+        poop_value = 10
       },
       {
         sprite = 007,
@@ -43,6 +46,7 @@ function shop_init()
         price = 9999,
         bigItem = 0,
         item_type = item_types.slime,
+        poop_value = 0
       },
       {
         sprite = 100,
@@ -197,7 +201,7 @@ function check_buy()
 
         --Check what kind of purchase it is
         if curritem.item_type == item_types.slime then
-          add_slime(curritem.color)
+          add_slime(curritem.color, curritem.poop_value)
         elseif curritem.item_type == item_types.seeds then
           add_to_inv(curritem)
         elseif curritem.item_type == item_types.plot then

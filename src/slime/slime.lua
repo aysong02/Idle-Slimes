@@ -59,7 +59,7 @@ function update_slimes()
           slime.last_poop += dt
         end
         if slime.last_poop >= 7 then
-          plant_poop(slime.x, slime.y,slime.color)
+          plant_poop(slime.x, slime.y,slime.color, slime.poop_value)
           slime.last_poop = 0
         end
 
@@ -73,7 +73,7 @@ function update_slimes()
     end
 end
 
-function add_slime(ncolor)
+function add_slime(ncolor, poop_value)
     newslime = {
       x = rnd(50)+30,
       y = rnd(50)+30,
@@ -89,6 +89,7 @@ function add_slime(ncolor)
       happiness = 100,
       valid = 1,--not sure if we need this
       color = ncolor,
+      poop_value = poop_value,
       }
     add(slimes, newslime)
     local slime = slimes[count(slimes)]

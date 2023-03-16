@@ -23,7 +23,7 @@ function draw_poop()
     end
 end
 
-function plant_poop(x, y,color)
+function plant_poop(x, y, color, value)
     type_set = flr(rnd(2))
     local seed = {
     x = x,
@@ -32,9 +32,9 @@ function plant_poop(x, y,color)
     w = poopData.w,
     h = poopData.h,
     valid = true,
-    color = color
-    }
-    
+    color = color,
+    value = value, 
+    }    
 
     for i=1, #poops do
         if poops[i].valid == false then
@@ -49,7 +49,7 @@ end
 function update_poop()
     for i=1, #poops do
         if collision_aabb(cursor, poops[i]) and poops[i].valid == true and click_press() then
-            soul += 1
+            soul += poops[i].value
             poops[i].valid = false
         end
     end
