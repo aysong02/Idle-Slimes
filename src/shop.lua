@@ -6,6 +6,7 @@ function shop_init()
     item_types = {
       slime = 0,
       seeds = 1,
+      plot = 2,
     }
     shopitems = {
       {
@@ -60,6 +61,15 @@ function shop_init()
         bigItem = 1,
         quantity = 1,
         item_type = item_types.seeds,
+      },
+      {
+        sprite = 22,
+        name = "crop plot",
+        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        price = 9,
+        bigItem = 0,
+        quantity = 1,
+        item_type = item_types.plot,
       },
     }
     leftbuttons ={
@@ -190,6 +200,8 @@ function check_buy()
           add_slime(curritem.color)
         elseif curritem.item_type == item_types.seeds then
           add_to_inv(curritem)
+        elseif curritem.item_type == item_types.plot then
+          add_field()
         end
         
       end

@@ -17,9 +17,6 @@ function crops_init()
     }
     cropsfield = {}
     next_field_loc = {x = 16, y = 16}
-    for i = 0,2 do
-        add_field()
-    end
 end
 function crops_draw()
     map(32, 0, 0, 0,128,128)
@@ -29,6 +26,7 @@ function crops_draw()
 end
 function crops_update()
     update_cropsbuttons()
+    check_plant_seed()
 end
 
 function update_cropsbuttons()
@@ -47,8 +45,11 @@ end
 
 function add_field()
     newfield={
+        sprite = 170, 
         x = next_field_loc.x,
         y = next_field_loc.y,
+        h = 16,
+        w = 16
     }
     add(cropsfield,newfield)
 
@@ -62,6 +63,23 @@ end
 
 function draw_fields()
     for field in all(cropsfield) do
-        spr(170,field.x,field.y,2,2)
+        spr(field.sprite,field.x,field.y,2,2)
     end
+end
+
+--Checks if you want to plant a seed
+function check_plant_seed()
+    -- check if an item even exists
+    if(inventory[inventory_select_no+1]) then
+        -- check if its a seed
+        if(inventory[inventory_select_no+1].item_type == item_types.seeds) then
+            -- check every plot to see which one is clicked
+            for plot in all(cropsfield) do
+                if(click_press(click_type.r_click) and collision_aabb(cursor, plot)) then
+                    plot.sprite = 134
+                end
+                -- plot.sprite = 134
+            end
+        end
+    end  
 end

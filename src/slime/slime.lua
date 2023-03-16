@@ -45,8 +45,7 @@ function slimefarm_update()
     update_slibuttons()
     update_slimes()
     update_poop()
-    update_invslots()
-    check_use_item()
+
 end
 
 function update_slimes()

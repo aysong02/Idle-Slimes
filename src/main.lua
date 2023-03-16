@@ -62,6 +62,8 @@ function _update60()
   elseif mode == mode_type.crops then
     crops_update()
   end
+  update_invslots()
+  check_use_item()
 end
 
 
