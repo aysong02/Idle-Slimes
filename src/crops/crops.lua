@@ -56,7 +56,8 @@ function add_field()
 
         --Plant data
         stage = 0,
-        plant_spr_data={}
+        plant_spr_data={},
+        produce={},
     }
     add(cropsfield,newfield)
 
@@ -97,6 +98,7 @@ function check_plant_seed()
                     plot.stage = 1
                     plot.plant_spr_data = tempitem.plant_spr_data
                     plot.planttime = t()
+                    plot.product = tempitem.product
                     use_item()
                 end
             end
@@ -107,12 +109,20 @@ end
 function update_plants()
     for plot in all(cropsfield) do
         if plot.stage != 0 then
-            local frame_time = 5
+            local frame_time = 1
             local stage = flr((t()- plot.planttime) / frame_time)+1--added since stage cannot be 0
             if stage >= #plot.plant_spr_data then
                 stage = #plot.plant_spr_data
             end
             plot.stage = stage
+        end
+
+        --If crop is at the end of its life cycle harvest
+        if plot.stage == #plot.plant_spr_data then
+            if click_press() and collision_aabb(cursor, plot) then
+                add_to_inv(plot.product)
+                plot.stage = 0
+            end
         end
     end
 

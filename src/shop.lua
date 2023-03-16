@@ -7,6 +7,7 @@ function shop_init()
       slime = 0,
       seeds = 1,
       plot = 2,
+      food = 3,
     }
     shopitems = {
       {
@@ -50,13 +51,23 @@ function shop_init()
       },
       {
         sprite = 100,
-        name = "rose seeds",
+        name = "berry drop seeds",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 10,
         bigItem = 1,
         quantity = 1,
-        plant_spr_data = {{136},{137},{138},{138,139},{156,140}},
         item_type = item_types.seeds,
+        --plant stuff
+        plant_spr_data = {{136},{137},{138},{138,139},{156,140}},
+        product = {
+          sprite = 100,
+          name = "berry drop",
+          desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+          bigItem = 0,
+          quantity = 1,
+          item_type = item_types.food,
+        }
+
       },
       {
         sprite = 78,
@@ -76,6 +87,7 @@ function shop_init()
         quantity = 1,
         item_type = item_types.plot,
       },
+
     }
     leftbuttons ={
       {
