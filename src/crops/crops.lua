@@ -27,6 +27,7 @@ end
 function crops_update()
     update_cropsbuttons()
     check_plant_seed()
+    update_plants()
 end
 
 function update_cropsbuttons()
@@ -51,7 +52,11 @@ function add_field()
         x = next_field_loc.x,
         y = next_field_loc.y,
         h = 16,
-        w = 16
+        w = 16,
+
+        --Plant data
+        stage = 0,
+        plant_spr_data={}
     }
     add(cropsfield,newfield)
 
@@ -64,24 +69,51 @@ function add_field()
 end
 
 function draw_fields()
-    for field in all(cropsfield) do
-        spr(field.sprite,field.x,field.y,2,2)
+    for plot in all(cropsfield) do
+        spr(plot.sprite,plot.x,plot.y,2,2)
+        if plot.stage > 0 then
+            --check height of plant
+            if #plot.plant_spr_data[plot.stage] == 1 then
+                spr(plot.plant_spr_data[plot.stage][1],plot.x+4,plot.y+6,1,1)
+            --If it isnt height of 1     
+            else
+                spr(plot.plant_spr_data[plot.stage][1],plot.x+4,plot.y+6,1,1)
+                spr(plot.plant_spr_data[plot.stage][2],plot.x+4,plot.y-2,1,1)
+            end
+        end
     end
 end
 
 --Checks if you want to plant a seed
 function check_plant_seed()
+    local tempitem = inventory[inventory_select_no+1]
     -- check if an item even exists
-    if(inventory[inventory_select_no+1]) then
+    if(tempitem) then
         -- check if its a seed
-        if(inventory[inventory_select_no+1].item_type == item_types.seeds) then
+        if(tempitem.item_type == item_types.seeds) then
             -- check every plot to see which one is clicked
             for plot in all(cropsfield) do
                 if(click_press(click_type.r_click) and collision_aabb(cursor, plot)) then
-                    plot.sprite = 134
+                    plot.stage = 1
+                    plot.plant_spr_data = tempitem.plant_spr_data
+                    plot.planttime = t()
+                    use_item()
                 end
-                -- plot.sprite = 134
             end
         end
     end  
+end
+
+function update_plants()
+    for plot in all(cropsfield) do
+        if plot.stage != 0 then
+            local frame_time = 5
+            local stage = flr((t()- plot.planttime) / frame_time)+1--added since stage cannot be 0
+            if stage >= #plot.plant_spr_data then
+                stage = #plot.plant_spr_data
+            end
+            plot.stage = stage
+        end
+    end
+
 end

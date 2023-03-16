@@ -63,7 +63,6 @@ function _update60()
     crops_update()
   end
   update_invslots()
-  check_use_item()
 end
 
 

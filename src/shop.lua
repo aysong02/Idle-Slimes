@@ -50,11 +50,12 @@ function shop_init()
       },
       {
         sprite = 100,
-        name = "Rose seeds",
+        name = "rose seeds",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 10,
         bigItem = 1,
         quantity = 1,
+        plant_spr_data = {{136},{137},{138},{138,139},{156,140}},
         item_type = item_types.seeds,
       },
       {

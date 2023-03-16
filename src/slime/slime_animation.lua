@@ -15,7 +15,7 @@ function update_slime_animation(slime)
         if stage >= slime_metadata.moving_frames then
             stage = 0
         end
-            slime.frame = stage + sprite_offset
+        slime.frame = stage + sprite_offset
     end
 
     if slime.happiness == 0 then

@@ -116,15 +116,13 @@ function update_invslots()
     end
 end
 
-function check_use_item()
-    if click_press(click_type.r_click) then
-        local temp = inventory[inventory_select_no+1]
-        if temp then
-            temp.quantity -= 1
-            --remove item from inventory if used up
-            if(temp.quantity == 0) then
-                del(inventory, temp)
-            end
+function use_item()
+    local temp = inventory[inventory_select_no+1]
+    if temp then
+        temp.quantity -= 1
+        --remove item from inventory if used up
+        if(temp.quantity == 0) then
+            del(inventory, temp)
         end
-    end 
+    end
 end
