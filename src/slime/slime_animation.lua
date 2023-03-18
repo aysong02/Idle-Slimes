@@ -1,21 +1,21 @@
+slime_jump_seq = {1,2,3,4,5,18,17,16}
+slime_idle_seq = {1,16,17,18,17,16,1}
 function update_slime_animation(slime)
     -- animation
     if slime.action == slime_metadata.idle then 
-        local sprite_offset = slime_metadata.idle_frame_offset
-        local frame_time = 0.1 
-        local stage = flr((t() + slime.animation_offset) / frame_time % 20)
-        if stage >= slime_metadata.idle_frames then
-            stage = 0
+        local frame_time = 0.05
+        local stage = flr((t()+ slime.animation_offset) / frame_time % 40)+1
+        if stage >= #slime_idle_seq then
+            stage = 1
         end
-            slime.frame = stage + sprite_offset
+        slime.frame = slime_idle_seq[stage]
     elseif slime.action == slime_metadata.moving then 
-        local sprite_offset = slime_metadata.moving_frame_offset
-        local frame_time = 0.1
-        local stage = flr((t() + slime.animation_offset) / frame_time % 7)
-        if stage >= slime_metadata.moving_frames then
-            stage = 0
+        local frame_time = 0.05
+        local stage = flr((t()+ slime.animation_offset) / frame_time % #slime_jump_seq)+1
+        if stage >= #slime_jump_seq then
+            stage = 1
         end
-        slime.frame = stage + sprite_offset
+        slime.frame = slime_jump_seq[stage]
     end
 
     if slime.happiness == 0 then
