@@ -68,16 +68,44 @@ function shop_init()
           quantity = 1,
           item_type = item_types.food,
         }
-
       },
       {
-        sprite = 10,
-        name = "Vroooomba",
+        sprite = 170,
+        name = "star egg seeds",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 10,
         bigItem = 1,
         quantity = 1,
-        item_type = item_types.roomba,
+        item_type = item_types.seeds,
+        --plant stuff
+        plant_spr_data = {{178},{179},{180,164},{181,165},{182,166}},
+        product = {
+          sprite = 153,
+          name = "star egg",
+          desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+          bigItem = 0,
+          quantity = 1,
+          item_type = item_types.food,
+        }
+      },
+      {
+        sprite = 170,
+        name = "star egg seeds",
+        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        price = 10,
+        bigItem = 1,
+        quantity = 1,
+        item_type = item_types.seeds,
+        --plant stuff
+        plant_spr_data = {{178},{179},{180,164},{181,165},{182,166}},
+        product = {
+          sprite = 153,
+          name = "star egg",
+          desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+          bigItem = 0,
+          quantity = 1,
+          item_type = item_types.food,
+        }
       },
       {
         sprite = 172,
@@ -164,13 +192,16 @@ function draw_shopbuttons()
   for tempi in all(onscreen) do
     xcord = 24 + i*32
     ycord = 66
-    rectfill( xcord+1, ycord+1, xcord+15, ycord+15, 13)
+    rectfill( xcord, ycord, xcord+15, ycord+15, 13)
     pal(tempi.color)
     --Check if the item is 16 bit or not
     if tempi.bigItem == 1 then
       spr(tempi.sprite, xcord, ycord,2,2)
     else
-      spr(tempi.sprite, xcord+5, ycord+4,1,1)
+      spr(tempi.sprite, xcord+4, ycord+4,1,1)
+    end
+    if tempi.item_type == item_types.seeds then
+      spr(tempi.product.sprite, xcord+4, ycord+5,1,1)
     end
     pal()
     print(tempi.price,xcord+6, ycord+20)

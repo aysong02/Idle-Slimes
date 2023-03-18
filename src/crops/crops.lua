@@ -1,19 +1,19 @@
 function crops_init()
-    cropsbuttons ={
-        {
-            sprite = 64,
-            x = 112,
-            y = 112,
-            h = 16,
-            w = 16,
-        },
-        {
-            sprite = 96,
-            x = 96,
-            y = 112,
-            h = 16,
-            w = 16,
-        }
+    shop_button = {
+        sprite = 64,
+        x = 112,
+        y = 112,
+        h = 16,
+        w = 16,
+        
+    }
+    slime_button = {
+        sprite = 96,
+        x = 96,
+        y = 112,
+        h = 16,
+        w = 16,
+        icon_sprite = 1,
     }
     cropsfield = {}
     next_field_loc = {x = 8, y = 24}
@@ -31,19 +31,20 @@ function crops_update()
 end
 
 function update_cropsbuttons()
-    if collision_aabb(cursor, cropsbuttons[1]) and click_release() then
+    if collision_aabb(cursor, shop_button) and click_release() then
         mode = mode_type.shop
         sfx(15)
     end
-    if collision_aabb(cursor, cropsbuttons[2]) and click_release() then
+    if collision_aabb(cursor, slime_button) and click_release() then
         mode = mode_type.slime_farm
         sfx(15)
     end
 end
 function draw_cropsbuttons()
-    for button in all(cropsbuttons) do
-        spr(button.sprite, button.x, button.y, button.w/8, button.h/8)
-    end
+    spr(shop_button.sprite, shop_button.x, shop_button.y, shop_button.w/8, shop_button.h/8)
+    spr(slime_button.sprite, slime_button.x, slime_button.y, slime_button.w/8, slime_button.h/8)
+    spr(slime_button.icon_sprite, slime_button.x+4, slime_button.y+4,1, 1)
+
 end
 
 function add_field()

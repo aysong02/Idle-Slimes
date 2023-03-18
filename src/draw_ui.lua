@@ -14,15 +14,16 @@ function create_slibuttons()
         y = 112,
         h = 16,
         w = 16,
+        icon_sprite = 166,
     }
     add(slibuttons, shop_button)
     add(slibuttons, crop_button)
 end
 
 function draw_slibuttons()
-    for button in all(slibuttons) do
-        spr(button.sprite, button.x, button.y, button.w/8, button.h/8)
-    end
+    spr(shop_button.sprite, shop_button.x, shop_button.y, shop_button.w/8, shop_button.h/8)
+    spr(crop_button.sprite, crop_button.x, crop_button.y, crop_button.w/8, crop_button.h/8)
+    spr(crop_button.icon_sprite, crop_button.x+4, crop_button.y+4,1, 1)
 end
 
 function update_slibuttons()
@@ -83,9 +84,14 @@ function draw_inventory()
             --Check if the item is 16 bit or not
             if tempi.bigItem == 1 then
                 spr(tempi.sprite, start_x + horizontal_offset,start_y + vertical_offset,2,2)
+                --Render seed product if item is a seed
+                if tempi.item_type == item_types.seeds then
+                    spr(tempi.product.sprite, start_x + horizontal_offset+4, start_y + vertical_offset+5,1,1)
+                end
             else
-                spr(tempi.sprite, start_x + horizontal_offset+5, start_y + vertical_offset,1,1)
+                spr(tempi.sprite, start_x + horizontal_offset+4, start_y + vertical_offset+4,1,1)
             end
+            --Print the quanity in inventory
             print(tempi.quantity,start_x +1 + horizontal_offset, start_y + vertical_offset+10,0)
             
         end
