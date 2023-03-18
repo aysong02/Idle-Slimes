@@ -90,17 +90,17 @@ function shop_init()
       },
       {
         sprite = 170,
-        name = "star egg seeds",
+        name = "blood rice seeds",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
         price = 10,
         bigItem = 1,
         quantity = 1,
         item_type = item_types.seeds,
         --plant stuff
-        plant_spr_data = {{178},{179},{180,164},{181,165},{182,166}},
+        plant_spr_data = {{167},{168},{183},{184}},
         product = {
-          sprite = 153,
-          name = "star egg",
+          sprite = 169,
+          name = "blood rice",
           desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
           bigItem = 0,
           quantity = 1,
