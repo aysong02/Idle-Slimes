@@ -12,9 +12,18 @@ function shop_init()
     }
     shopitems = {
       {
+        sprite = 172,
+        name = "crop plot",
+        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        price = 100,
+        bigItem = 1,
+        quantity = 1,
+        item_type = item_types.plot,
+      },
+      {
         sprite = 001,
         name = "Green slime",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        desc = "A simple green slime whose needs are simple to tend to",
         price = 10,
         color = {},
         bigItem = 0,
@@ -24,7 +33,7 @@ function shop_init()
       {
         sprite = 001,
         name = "Red slime",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        desc = "Angwy red slime :(",
         price = 100,
         color = {[11]=8, [10]=9, [3]=2},
         bigItem = 0,
@@ -118,15 +127,6 @@ function shop_init()
         }
       },
 
-      {
-        sprite = 172,
-        name = "crop plot",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 100,
-        bigItem = 1,
-        quantity = 1,
-        item_type = item_types.plot,
-      },
 
     }
     leftbuttons ={
@@ -170,6 +170,12 @@ function shop_init()
     }
     lefti = 1
     inum = (#shopitems)
+
+    --initialize items for shop
+    onscreen = {shopitems[1],shopitems[2],shopitems[3]}
+    --Doing textbox things
+    reading = false
+    tb_init(0, {"onscreen[2].descsafddddddddd","safsfaf"})
 end
 
 function shop_draw()
@@ -182,11 +188,18 @@ function shop_draw()
     pal(15,134,1)
     spr(224,7,7,4,2)
     print(soul,20,13,0)
+    tb_draw()
 end
 
 function shop_update()
   check_scroll()
   check_buy()
+  
+  if reading then
+    tb_update()
+  else
+    tb_init(0, {onscreen[2].desc})  
+  end
 end
 
 function draw_shopbuttons()
@@ -304,6 +317,7 @@ function deepcopy(orig)
   end
   return copy
 end
+
 
 
 
