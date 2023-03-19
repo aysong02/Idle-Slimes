@@ -25,7 +25,7 @@ function _init()
     clicking = false,
     prevClick = false,
   }
-  soul = 500
+  soul = 900
   soul_sprite = 51
   shop_init()
   slimefarm_init()
@@ -61,10 +61,12 @@ function _update60()
     shop_update()
   elseif mode == mode_type.slime_farm then
     slimefarm_update()
+    update_invslots()
   elseif mode == mode_type.crops then
     crops_update()
+    update_invslots()
   end
-  update_invslots()
+
 end
 
 

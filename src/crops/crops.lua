@@ -119,7 +119,7 @@ function update_plants()
         end
 
         --If crop is at the end of its life cycle harvest
-        if plot.stage == #plot.plant_spr_data then
+        if plot.stage == #plot.plant_spr_data and plot.stage!= 0 then
             if click_press() and collision_aabb(cursor, plot) then
                 add_to_inv(plot.product)
                 plot.stage = 0
