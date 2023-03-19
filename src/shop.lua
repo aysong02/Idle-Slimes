@@ -15,7 +15,7 @@ function shop_init()
         sprite = 001,
         name = "Green slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 1,
+        price = 10,
         color = {},
         bigItem = 0,
         item_type = item_types.slime,
@@ -25,21 +25,31 @@ function shop_init()
         sprite = 001,
         name = "Red slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 10,
+        price = 100,
         color = {[11]=8, [10]=9, [3]=2},
         bigItem = 0,
         item_type = item_types.slime,
-        poop_value = 5,
+        poop_value = 12,
       },
       {
         sprite = 001,
         name = "Yellow slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 50,
+        price = 500,
         color = {[11]=10, [10]=9, [3]=4},
         bigItem = 0,
         item_type = item_types.slime,
-        poop_value = 10
+        poop_value = 69
+      },
+      {
+        sprite = 001,
+        name = "Blue slime",
+        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        price = 3000,
+        color = {[11]=12, [10]=13, [3]=1},
+        bigItem = 0,
+        item_type = item_types.slime,
+        poop_value = 450
       },
       {
         sprite = 023,
@@ -49,44 +59,6 @@ function shop_init()
         bigItem = 0,
         item_type = item_types.slime,
         poop_value = 0
-      },
-      {
-        sprite = 170,
-        name = "berry drop seeds",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 10,
-        bigItem = 1,
-        quantity = 1,
-        item_type = item_types.seeds,
-        --plant stuff
-        plant_spr_data = {{136},{137},{138},{138,139},{156,140}},
-        product = {
-          sprite = 185,
-          name = "berry drop",
-          desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-          bigItem = 0,
-          quantity = 1,
-          item_type = item_types.food,
-        }
-      },
-      {
-        sprite = 170,
-        name = "star egg seeds",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 10,
-        bigItem = 1,
-        quantity = 1,
-        item_type = item_types.seeds,
-        --plant stuff
-        plant_spr_data = {{178},{179},{180,164},{181,165},{182,166}},
-        product = {
-          sprite = 153,
-          name = "star egg",
-          desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-          bigItem = 0,
-          quantity = 1,
-          item_type = item_types.food,
-        }
       },
       {
         sprite = 170,
@@ -108,10 +80,49 @@ function shop_init()
         }
       },
       {
+        sprite = 170,
+        name = "berry drop seeds",
+        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        price = 50,
+        bigItem = 1,
+        quantity = 1,
+        item_type = item_types.seeds,
+        --plant stuff
+        plant_spr_data = {{136},{137},{138},{138,139},{156,140}},
+        product = {
+          sprite = 185,
+          name = "berry drop",
+          desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+          bigItem = 0,
+          quantity = 1,
+          item_type = item_types.food,
+        }
+      },
+      {
+        sprite = 170,
+        name = "star egg seeds",
+        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        price = 500,
+        bigItem = 1,
+        quantity = 1,
+        item_type = item_types.seeds,
+        --plant stuff
+        plant_spr_data = {{178},{179},{180,164},{181,165},{182,166}},
+        product = {
+          sprite = 153,
+          name = "star egg",
+          desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+          bigItem = 0,
+          quantity = 1,
+          item_type = item_types.food,
+        }
+      },
+
+      {
         sprite = 172,
         name = "crop plot",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 9,
+        price = 100,
         bigItem = 1,
         quantity = 1,
         item_type = item_types.plot,
