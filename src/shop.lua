@@ -86,6 +86,7 @@ function shop_init()
           bigItem = 0,
           quantity = 1,
           item_type = item_types.food,
+          happy_val = 10
         }
       },
       {
@@ -105,6 +106,7 @@ function shop_init()
           bigItem = 0,
           quantity = 1,
           item_type = item_types.food,
+          happy_val = 25
         }
       },
       {
@@ -124,6 +126,7 @@ function shop_init()
           bigItem = 0,
           quantity = 1,
           item_type = item_types.food,
+          happy_val = 100
         }
       },
 

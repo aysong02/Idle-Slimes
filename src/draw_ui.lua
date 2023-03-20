@@ -42,10 +42,24 @@ function update_slibuttons()
     end
     
     -- feed slimes
+    local tempitem = inventory[inventory_select_no+1]
     for slime in all(slimes) do
         if collision_aabb(cursor, slime) and click_press() then
-            slime.happiness = 100
+            if slime.happiness <= 20 then 
+                slime.happiness += 10
+            end
             break
+        end
+
+        -- check if an item even exists
+        if(tempitem) then
+            if collision_aabb(cursor, slime) and click_press(click_type.r_click) then
+                if tempitem.item_type == item_types.food and slime.happiness < 100 then 
+                    slime.happiness += tempitem.happy_val
+                    use_item()
+                end
+                break
+            end
         end
     end
     -- drag slimes
