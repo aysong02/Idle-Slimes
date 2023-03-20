@@ -65,7 +65,6 @@ function _update60()
     opening_update()
   elseif mode == mode_type.shop then
     shop_update()
-<<<<<<< HEAD
   elseif mode == mode_type.slime_farm then
     slimefarm_update()
     update_invslots()
@@ -74,12 +73,6 @@ function _update60()
     update_invslots()
   end
 
-=======
-  end
-  slimefarm_update()
-  crops_update()
-  update_invslots()
->>>>>>> f6b1775 (starting cursor)
 end
 
 
