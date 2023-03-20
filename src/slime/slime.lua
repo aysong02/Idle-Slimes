@@ -42,9 +42,7 @@ function slimefarm_draw()
 end
 
 function slimefarm_update()
-    update_slibuttons()
     update_slimes()
-    update_poop()
 
 end
 

@@ -27,6 +27,10 @@ function draw_slibuttons()
 end
 
 function update_slibuttons()
+    if collision_aabb(cursor, slibuttons[1]) or collision_aabb(cursor, slibuttons[2]) then
+        cursor.sprite = cursor_sprites.hover
+    end
+    -- buttons to switch modes
     if collision_aabb(cursor, slibuttons[1]) and click_release() then
         mode = mode_type.shop
         sfx(15)
@@ -45,12 +49,26 @@ function update_slibuttons()
     end
     -- drag slimes
     for slime in all(slimes) do
+        if collision_aabb(cursor, slime) then
+            cursor.sprite = cursor_sprites.hover
+        end
         if collision_aabb(cursor, slime) and click_press(click_type.r_click) then
             slime.action = slime_metadata.held
             break
         end
     end
 
+    -- click poop
+    for i=1, #poops do
+        if collision_aabb(cursor, poops[i]) then
+            cursor.sprite = cursor_sprites.hover
+        end
+        if collision_aabb(cursor, poops[i]) and poops[i].valid == true and click_press() then
+            soul += poops[i].value
+            sfx(19)
+            poops[i].valid = false
+        end
+    end
 end
 
 function draw_fence()

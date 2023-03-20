@@ -26,6 +26,12 @@ function _init()
     prevClick = false,
   }
   soul = 900
+  cursor_sprites = {
+    hover = 9,
+    normal = 8,
+    clicking = 24
+  }
+  soul = 500
   soul_sprite = 51
   shop_init()
   slimefarm_init()
@@ -59,6 +65,7 @@ function _update60()
     opening_update()
   elseif mode == mode_type.shop then
     shop_update()
+<<<<<<< HEAD
   elseif mode == mode_type.slime_farm then
     slimefarm_update()
     update_invslots()
@@ -67,6 +74,12 @@ function _update60()
     update_invslots()
   end
 
+=======
+  end
+  slimefarm_update()
+  crops_update()
+  update_invslots()
+>>>>>>> f6b1775 (starting cursor)
 end
 
 

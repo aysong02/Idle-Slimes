@@ -25,12 +25,13 @@ function crops_draw()
     draw_fields()
 end
 function crops_update()
-    update_cropsbuttons()
-    check_plant_seed()
     update_plants()
 end
 
 function update_cropsbuttons()
+    if collision_aabb(cursor, shop_button) or collision_aabb(cursor, slime_button) then
+        cursor.sprite = cursor_sprites.hover
+    end
     if collision_aabb(cursor, shop_button) and click_release() then
         mode = mode_type.shop
         sfx(15)
