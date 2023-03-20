@@ -7,6 +7,7 @@ function _init()
     slime_farm = 2,
     crops = 3,
     title = 4,
+    credit = 5,
   }
   click_type = {
     l_click = 1,
@@ -21,8 +22,8 @@ function _init()
     sprite = 8,
     x = 10,
     y = 10,
-    w = 1,
-    h = 1,
+    w = 4,
+    h = 4,
     clicking = false,
     prevClick = false,
   }
@@ -38,6 +39,8 @@ function _init()
   slimefarm_init()
   opening_init()
   crops_init()
+  title_init()
+  credit_init()
 end
 
 function _draw()
@@ -52,6 +55,8 @@ function _draw()
     crops_draw()
   elseif mode == mode_type.title then
     title_draw()
+  elseif mode == mode_type.credit then
+    credit_draw()
   end
   -- Cursor is here since we want it to be at the top
   spr(cursor.sprite, cursor.x, cursor.y)
@@ -68,6 +73,8 @@ function _update60()
     opening_update()
   elseif mode == mode_type.title then
     title_update()
+  elseif mode == mode_type.credit then
+    credit_update()
   end
   
   slimefarm_update()
