@@ -115,7 +115,7 @@ function check_plant_seed()
         if(tempitem.item_type == item_types.seeds) then
             -- check every plot to see which one is clicked
             for plot in all(cropsfield) do
-                if(click_press(click_type.r_click) and collision_aabb(cursor, plot)) then
+                if(click_press(click_type.r_click) and collision_aabb(cursor, plot))  and plot.stage == 0 then
                     plot.stage = 1
                     plot.plant_spr_data = tempitem.plant_spr_data
                     plot.planttime = t()

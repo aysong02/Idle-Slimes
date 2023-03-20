@@ -1,5 +1,5 @@
 function initailize_poop()
-    for i=1, 10, 1 do
+    for i=1, 30, 1 do
         local seed = {
             x = 10,
             y = 10,
