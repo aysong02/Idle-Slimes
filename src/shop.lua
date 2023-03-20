@@ -174,6 +174,13 @@ function shop_init()
     lefti = 1
     inum = (#shopitems)
 
+    shopkeep_seq = {212,200,202,200,212}
+    shopkeep_spr = {
+        frame = 202,
+        x= 88,
+        y = 40,
+        animation_offset = flr(rnd(20))
+    }
     --initialize items for shop
     onscreen = {shopitems[1],shopitems[2],shopitems[3]}
 end
@@ -189,6 +196,7 @@ function shop_draw()
     spr(224,7,7,4,2)
     print(soul,20,13,0)
     tb_draw()
+    spr(shopkeep_spr.frame, shopkeep_spr.x, shopkeep_spr.y,2,2)
 end
 
 function shop_update()
@@ -197,7 +205,7 @@ function shop_update()
   end
   check_scroll()
   check_buy()
-  
+  animate_shopkeep()
 end
 
 function draw_shopbuttons()
@@ -332,7 +340,14 @@ function deepcopy(orig)
   return copy
 end
 
-
+function animate_shopkeep()
+  local frame_time = 0.3
+  local stage = flr((t()+ shopkeep_spr.animation_offset) / frame_time % 40)+1
+  if stage >= #shopkeep_seq then
+      stage = 1
+  end
+  shopkeep_spr.frame = shopkeep_seq[stage]
+end
 
 
   

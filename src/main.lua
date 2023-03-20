@@ -33,7 +33,7 @@ function _init()
     normal = 8,
     clicking = 24
   }
-  soul = 1000
+  soul = 300
   soul_sprite = 51
   shop_init()
   slimefarm_init()
