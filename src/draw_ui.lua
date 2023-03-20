@@ -33,6 +33,7 @@ function update_slibuttons()
     -- buttons to switch modes
     if collision_aabb(cursor, slibuttons[1]) and click_release() then
         mode = mode_type.shop
+        tb_init(0, {onscreen[2].desc}) 
         sfx(15)
     end
     if collision_aabb(cursor, slibuttons[2]) and click_release() then
@@ -133,7 +134,10 @@ function update_invslots()
     for i = 0,9,1 do 
         local horizontal_offset = (i % 2) * 16
         local vertical_offset = flr(i / 2) * 16
-        if collision_aabb(cursor, {x = (start_x + horizontal_offset), y =(start_y + vertical_offset), h=16,w=16}) and click_press() then
+        if collision_aabb(cursor, {x = (start_x + horizontal_offset), y =(start_y + vertical_offset), h=16,w=16}) then
+            cursor.sprite = cursor_sprites.hover
+        end
+        if collision_aabb(cursor, {x = (start_x + horizontal_offset), y =(start_y + vertical_offset), h=16,w=16}) and click_release() then
             inventory_select_no = i
 
         end

@@ -18,14 +18,33 @@ function crops_init()
     cropsfield = {}
     next_field_loc = {x = 8, y = 24}
 end
+
 function crops_draw()
     map(32, 0, 0, 0,128,128)
     draw_inventory()
     draw_cropsbuttons()
     draw_fields()
 end
+
 function crops_update()
-    update_plants()
+    for plot in all(cropsfield) do
+        if plot.stage != 0 then
+            local frame_time = 1
+            local stage = flr((t()- plot.planttime) / frame_time)+1--added since stage cannot be 0
+            if stage >= #plot.plant_spr_data then
+                stage = #plot.plant_spr_data
+            end
+            plot.stage = stage
+        end
+
+        --If crop is at the end of its life cycle harvest
+        if plot.stage == #plot.plant_spr_data and plot.stage!= 0 then
+            if click_press() and collision_aabb(cursor, plot) then
+                add_to_inv(plot.product)
+                plot.stage = 0
+            end
+        end
+    end
 end
 
 function update_cropsbuttons()
@@ -106,26 +125,4 @@ function check_plant_seed()
             end
         end
     end  
-end
-
-function update_plants()
-    for plot in all(cropsfield) do
-        if plot.stage != 0 then
-            local frame_time = 1
-            local stage = flr((t()- plot.planttime) / frame_time)+1--added since stage cannot be 0
-            if stage >= #plot.plant_spr_data then
-                stage = #plot.plant_spr_data
-            end
-            plot.stage = stage
-        end
-
-        --If crop is at the end of its life cycle harvest
-        if plot.stage == #plot.plant_spr_data and plot.stage!= 0 then
-            if click_press() and collision_aabb(cursor, plot) then
-                add_to_inv(plot.product)
-                plot.stage = 0
-            end
-        end
-    end
-
 end

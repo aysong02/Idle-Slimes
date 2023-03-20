@@ -23,7 +23,7 @@ function shop_init()
       {
         sprite = 001,
         name = "Green slime",
-        desc = "A simple green slime whose needs are simple to tend to",
+        desc = "a simple green slime whose \nneeds are simple to tend to",
         price = 10,
         color = {},
         bigItem = 0,
@@ -173,9 +173,6 @@ function shop_init()
 
     --initialize items for shop
     onscreen = {shopitems[1],shopitems[2],shopitems[3]}
-    --Doing textbox things
-    reading = false
-    tb_init(0, {"onscreen[2].descsafddddddddd","safsfaf"})
 end
 
 function shop_draw()
@@ -192,14 +189,12 @@ function shop_draw()
 end
 
 function shop_update()
+  if reading then
+    tb_update()  
+  end
   check_scroll()
   check_buy()
   
-  if reading then
-    tb_update()
-  else
-    tb_init(0, {onscreen[2].desc})  
-  end
 end
 
 function draw_shopbuttons()
@@ -247,21 +242,34 @@ end
   
 function check_scroll()
   for button in all(rightbuttons) do
+    if collision_aabb(cursor, button) then
+      cursor.sprite = cursor_sprites.hover
+    end
+
     if collision_aabb(cursor, button) and click_release() then
-      lefti+=1
+      lefti+= 1
       lefti= lefti%(inum)
+      tb_init(0, {onscreen[3].desc}) 
     end
   end
   for button in all(leftbuttons) do
+    if collision_aabb(cursor, button) then
+      cursor.sprite = cursor_sprites.hover
+    end
     if collision_aabb(cursor, button) and click_release() then
-      lefti-=1
+      lefti-= 1
       lefti= lefti%(inum)
+      tb_init(0, {onscreen[1].desc}) 
     end
   end
 end
 
 function check_buy()
   for button in all(shopcontainers) do
+    if collision_aabb(cursor, button) then
+      cursor.sprite = cursor_sprites.hover
+    end
+    
     if collision_aabb(cursor, button) and click_release() then
       --Check if you have enough soul
       curritem = onscreen[button.num]
@@ -284,6 +292,9 @@ function check_buy()
     end
   end
 
+  if collision_aabb(cursor, {x=112,y=0,h=16,w=16}) then
+    cursor.sprite = cursor_sprites.hover
+  end
   if collision_aabb(cursor, {x=112,y=0,h=16,w=16}) and click_release() then
     mode = mode_type.slime_farm
     sfx(15)

@@ -42,34 +42,32 @@ function slimefarm_draw()
 end
 
 function slimefarm_update()
-    update_slimes()
+  for slime in all(slimes) do
+    update_slime_movement(slime)
+    update_slime_action(slime)
+    update_slime_animation(slime)
 
-end
-
-function update_slimes()
-    for slime in all(slimes) do
-        update_slime_movement(slime)
-        update_slime_action(slime)
-        update_slime_animation(slime)
-
-        -- pooping
-        if slime.happiness != 0 then
-          slime.last_poop += dt
-        end
-        if slime.last_poop >= 7 then
-          plant_poop(slime.x, slime.y,slime.color, slime.poop_value)
-          slime.last_poop = 0
-        end
-
-        -- happiness
-        local happiness_decay = 50 --happiness lost per minute
-        if slime.happiness > 0 then
-          slime.happiness -= happiness_decay / 3600
-        else 
-          slime.happiness = 0
-        end
+    -- pooping
+    if slime.happiness != 0 then
+      slime.last_poop += dt
     end
+    if slime.last_poop >= 7 then
+      plant_poop(slime.x, slime.y,slime.color, slime.poop_value)
+      slime.last_poop = 0
+    end
+
+    -- happiness
+    local happiness_decay = 50 --happiness lost per minute
+    if slime.happiness > 0 then
+      slime.happiness -= happiness_decay / 3600
+    else 
+      slime.happiness = 0
+    end
+  end
+
 end
+
+
 
 function add_slime(ncolor, poop_value)
     newslime = {
