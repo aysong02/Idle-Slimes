@@ -6,6 +6,7 @@ function _init()
     shop = 1,
     slime_farm = 2,
     crops = 3,
+    title = 4,
   }
   click_type = {
     l_click = 1,
@@ -14,7 +15,7 @@ function _init()
   inventory = {
   }
   inventory_select_no = 0
-  mode = mode_type.opening
+  mode = mode_type.title
   poke(0x5F2D, 1) -- necessary for working curor
   cursor = {
     sprite = 8,
@@ -49,6 +50,8 @@ function _draw()
     slimefarm_draw()
   elseif mode == mode_type.crops then
     crops_draw()
+  elseif mode == mode_type.title then
+    title_draw()
   end
   -- Cursor is here since we want it to be at the top
   spr(cursor.sprite, cursor.x, cursor.y)
@@ -63,7 +66,10 @@ function _update60()
   input() 
   if mode == mode_type.opening then
     opening_update()
+  elseif mode == mode_type.title then
+    title_update()
   end
+  
   slimefarm_update()
   crops_update()
   
