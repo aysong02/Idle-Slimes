@@ -61,6 +61,7 @@ function slimefarm_update()
     if slime.happiness > 0 then
       slime.happiness -= happiness_decay / 3600
     else --If it goes zero or negative
+      slime.action = slime_metadata.idle
       slime.happiness = 0
     end
   end
