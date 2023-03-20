@@ -5,15 +5,13 @@ function opening_init()
         "done! it seems to be working\nfine now! text boxes are great\nfor adventure and rpg games!"
     }
     reading = false
-
-
     tb_init(0, opening_text)
+    
 end
 
 function opening_draw()
+    map(16, 0, 0, 0,128,128)
     tb_draw()
-    -- print(opening_text[1],0,0)
-    print("gold", 10, 10)
 end
 
 
