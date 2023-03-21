@@ -88,8 +88,6 @@ function _update60()
   
   slimefarm_update()
   crops_update()
-  
-
 end
 
 

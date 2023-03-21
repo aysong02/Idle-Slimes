@@ -34,7 +34,7 @@ function shop_init()
       {
         sprite = 001,
         name = "Red slime",
-        desc = "Angwy red slime :(",
+        desc = "a red slime that is easily\nagitated but is relatively\nvaluable",
         price = 200,
         color = {[11]=8, [10]=9, [3]=2},
         bigItem = 0,
@@ -184,6 +184,7 @@ function shop_init()
     }
     --initialize items for shop
     onscreen = {shopitems[1],shopitems[2],shopitems[3]}
+    add_to_inv(shopitems[7].product)
 end
 
 function shop_draw()

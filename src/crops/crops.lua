@@ -122,6 +122,7 @@ function check_plant_seed()
                     plot.planttime = t()
                     plot.product = tempitem.product
                     use_item()
+                    break
                 end
             end
         end
