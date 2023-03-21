@@ -17,6 +17,7 @@ function crops_init()
     }
     cropsfield = {}
     next_field_loc = {x = 8, y = 24}
+    add_field()
 end
 
 function crops_draw()

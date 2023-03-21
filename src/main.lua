@@ -14,6 +14,15 @@ function _init()
     r_click = 2,
   }
   inventory = {
+    {
+      sprite = 077,
+      name = "trash can",
+      desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+      price = 1,
+      bigItem = 1,
+      quantity = 1,
+      item_type = 5,
+    },
   }
   inventory_select_no = 0
   mode = mode_type.title

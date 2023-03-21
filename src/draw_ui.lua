@@ -59,6 +59,9 @@ function update_slibuttons()
                     slime.happiness += tempitem.happy_val
                     use_item()
                 end
+                if tempitem.item_type == item_types.trash then 
+                    del(slimes,slime)
+                end
                 break
             end
         end

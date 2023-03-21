@@ -1,13 +1,15 @@
 -- Opening Scene Screen
 function opening_init()
     opening_text = {
-        "*the first thing i do when i \nwake up is water my plants but \ni want to go check on my slimes! i hope they were okay in the rain…*",
-        "*slimes actually thrive in the \nrain since it allows them \nto grow, but i can't help but feel bad for them when they’re stuck out there for so long in the cold…*",
-        "*i've grown to care a lot about \nmy slimes.. they are my \nonly friends but i'm okay with that!*",
-        "*to be honest i don't even know \nif they acknowledge me \nbut that's okay because they're cute and they keep me happy*" ,
-        "*i've had my slime farm for a \nwhile now! but i'm starting \nto worry about space because there's so many of them…*",
-        "*i noticed a new shop opened \nup down the street! i think \ni will go check it out after i check on my slimes.*",
-        "*since i'm heading to the \nfarm i should probably also \nfeed them and clean up their space!*",
+        "talking to yourself:\nthe first thing i do when i \nwake up is water my plants",
+        "talking to yourself:\nluckily i just harvested my\ncrop so theres no need for it",
+        "talking to yourself:\ni do miss my slimes that\nran off",
+        "talking to yourself:\nhopefully they were okay in \nthe rain",
+        "talking to yourself:\ni have grown to care a lot \nabout my slimes.",
+        "talking to yourself:\nto be honest i don't even know \nif they acknowledge me",
+        "talking to yourself:\nwell theres no use in crying \nover spilt milk",
+        "talking to yourself:\ni heard there was a new slime\nshop down the street",
+        "talking to yourself:\nmaybe i should go check it out\nand try slime farming again",
     }
     reading = false
     tb_init(0, opening_text)

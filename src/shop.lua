@@ -9,6 +9,7 @@ function shop_init()
       plot = 2,
       food = 3,
       roomba = 4,
+      trash = 5,
     }
     shopitems = {
       {
@@ -34,11 +35,11 @@ function shop_init()
         sprite = 001,
         name = "Red slime",
         desc = "Angwy red slime :(",
-        price = 100,
+        price = 200,
         color = {[11]=8, [10]=9, [3]=2},
         bigItem = 0,
         item_type = item_types.slime,
-        poop_value = 12,
+        poop_value = 5,
       },
       {
         sprite = 001,
@@ -48,17 +49,17 @@ function shop_init()
         color = {[11]=10, [10]=9, [3]=4},
         bigItem = 0,
         item_type = item_types.slime,
-        poop_value = 69
+        poop_value = 25
       },
       {
         sprite = 001,
         name = "Blue slime",
         desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
-        price = 3000,
+        price = 1000,
         color = {[11]=12, [10]=13, [3]=1},
         bigItem = 0,
         item_type = item_types.slime,
-        poop_value = 450
+        poop_value = 50
       },
       {
         sprite = 023,
