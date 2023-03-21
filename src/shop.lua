@@ -195,6 +195,7 @@ function shop_init()
     --initialize items for shop
     onscreen = {shopitems[1],shopitems[2],shopitems[3]}
     add_to_inv(shopitems[8].product)
+    tb_init(18)
 end
 
 function shop_draw()
@@ -272,7 +273,8 @@ function check_scroll()
     if collision_aabb(cursor, button) and click_release() then
       lefti+= 1
       lefti= lefti%(inum)
-      tb_init(0, {onscreen[3].desc}) 
+      tb_init(18, {onscreen[3].desc})
+      sfx(15)
     end
   end
   for button in all(leftbuttons) do
@@ -282,7 +284,8 @@ function check_scroll()
     if collision_aabb(cursor, button) and click_release() then
       lefti-= 1
       lefti= lefti%(inum)
-      tb_init(0, {onscreen[1].desc}) 
+      tb_init(18, {onscreen[1].desc})
+      sfx(15)
     end
   end
 end
@@ -321,6 +324,7 @@ function check_buy()
   if collision_aabb(cursor, {x=112,y=0,h=16,w=16}) and click_release() then
     mode = mode_type.slime_farm
     sfx(15)
+    music(0)
   end
 end
 

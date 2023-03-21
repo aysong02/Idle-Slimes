@@ -111,8 +111,8 @@ function drawSlime()
         local speech_waittime = 10
         local speech_duration = 3
         if flr(t()) % speech_waittime < speech_duration or slimes[i].happiness == 0 then 
-          spr(hunger_metadata.bubble_frame, slimes[i].x + 5, slimes[i].y - 10, 2, 2)
-          spr(emote_frame, slimes[i].x + 10, slimes[i].y - 9)
+          spr(hunger_metadata.bubble_frame, slimes[i].x + 5+3, slimes[i].y - 10-3, 2, 2)
+          spr(emote_frame, slimes[i].x + 10+3, slimes[i].y - 9-3)
         end
         pal()
       end

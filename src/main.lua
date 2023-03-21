@@ -1,6 +1,6 @@
 -- init, draw, update, and input
 function _init()
-  music(0)
+  music(16)
   mode_type = {
     opening = 0,
     shop = 1,

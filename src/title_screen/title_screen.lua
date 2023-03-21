@@ -37,12 +37,14 @@ function title_update()
     if collision_aabb(cursor, title_btn1) then
         cursor.sprite = cursor_sprites.hover
         if click_release() then
+            sfx(15)
             mode = mode_type.opening
         end
     end
     if collision_aabb(cursor, title_btn2) then
         cursor.sprite = cursor_sprites.hover
         if click_release() then
+            sfx(15)
             mode = mode_type.credit
         end
     end

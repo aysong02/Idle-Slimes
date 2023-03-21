@@ -12,7 +12,7 @@ function opening_init()
         "talking to yourself:\nmaybe i should go check it out\nand try slime farming again",
     }
     reading = false
-    tb_init(0, opening_text)
+    tb_init(18, opening_text)
 end
 
 function opening_draw()
@@ -34,6 +34,7 @@ function opening_update()
         tb_update() -- handle the text box on every frame update.   
     else 
         mode = mode_type.slime_farm
+        music(0)
     end
     animate_shopkeep()
 end

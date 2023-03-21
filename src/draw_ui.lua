@@ -33,8 +33,9 @@ function update_slibuttons()
     -- buttons to switch modes
     if collision_aabb(cursor, slibuttons[1]) and click_release() then
         mode = mode_type.shop
-        tb_init(0, {onscreen[2].desc}) 
+        tb_init(18, {onscreen[2].desc}) 
         sfx(15)
+        music(16)
     end
     if collision_aabb(cursor, slibuttons[2]) and click_release() then
         mode = mode_type.crops
