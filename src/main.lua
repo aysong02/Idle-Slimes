@@ -24,7 +24,7 @@ function _init()
       item_type = 5,
     },
   }
-  inventory_select_no = 0
+  inventory_select_no = 9
   mode = mode_type.title
   poke(0x5F2D, 1) -- necessary for working curor
   cursor = {
@@ -36,13 +36,12 @@ function _init()
     clicking = false,
     prevClick = false,
   }
-  soul = 900
   cursor_sprites = {
     hover = 9,
     normal = 8,
     clicking = 24
   }
-  soul = 300
+  soul = 10
   soul_sprite = 51
   shop_init()
   slimefarm_init()
@@ -70,8 +69,8 @@ function _draw()
   -- Cursor is here since we want it to be at the top
   spr(cursor.sprite, cursor.x, cursor.y)
   -- debug prints
-  print(cursor.x, cursor.x, cursor.y + 8, 12)
-  print(cursor.y, cursor.x, cursor.y + 13, 13)
+  -- print(cursor.x, cursor.x, cursor.y + 8, 12)
+  -- print(cursor.y, cursor.x, cursor.y + 13, 13)
 end
 
 function _update60()

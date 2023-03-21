@@ -8,7 +8,7 @@ end
 
 function title_draw()
     rectfill(0, 0, 128, 128, 13)
-    spr(66, 16, 31, 12, 4) 
+    spr(66, 16, 31, 11, 4) 
     
     -- bottom screen
     -- rectfill(16, 105, 111, 128, 7)

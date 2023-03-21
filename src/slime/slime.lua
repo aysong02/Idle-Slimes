@@ -42,7 +42,7 @@ function slimefarm_draw()
 end
 
 function slimefarm_update()
-  local happiness_decay = 200 --happiness lost per minute
+  local happiness_decay = 50 --happiness lost per minute
   for slime in all(slimes) do
     update_slime_movement(slime)
     update_slime_action(slime)

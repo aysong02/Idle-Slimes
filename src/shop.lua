@@ -23,13 +23,23 @@ function shop_init()
       },
       {
         sprite = 001,
-        name = "Green slime",
-        desc = "a simple green slime whose \nneeds are simple to tend to",
+        name = "poop slime",
+        desc = "eww! who would want this slime?",
         price = 10,
-        color = {},
+        color = {[11]=15, [10]=9, [3]=4},
         bigItem = 0,
         item_type = item_types.slime,
         poop_value = 1
+      },
+      {
+        sprite = 001,
+        name = "Green slime",
+        desc = "A common slime, nothing special",
+        price = 50,
+        color = {},
+        bigItem = 0,
+        item_type = item_types.slime,
+        poop_value = 5
       },
       {
         sprite = 001,
@@ -44,7 +54,7 @@ function shop_init()
       {
         sprite = 001,
         name = "Yellow slime",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        desc = "a slime well known for its \nvaluable composition though\nsome people say it stinks",
         price = 500,
         color = {[11]=10, [10]=9, [3]=4},
         bigItem = 0,
@@ -54,7 +64,7 @@ function shop_init()
       {
         sprite = 001,
         name = "Blue slime",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        desc = "A rare slime but this one\n has not eaten a dragon ",
         price = 1000,
         color = {[11]=12, [10]=13, [3]=1},
         bigItem = 0,
@@ -64,7 +74,7 @@ function shop_init()
       {
         sprite = 023,
         name = "Rainbow slime",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        desc = "a legendary slime that only\nthe worthy can see",
         price = 9999,
         bigItem = 0,
         item_type = item_types.slime,
@@ -184,7 +194,7 @@ function shop_init()
     }
     --initialize items for shop
     onscreen = {shopitems[1],shopitems[2],shopitems[3]}
-    add_to_inv(shopitems[7].product)
+    add_to_inv(shopitems[8].product)
 end
 
 function shop_draw()
@@ -243,7 +253,7 @@ function draw_shopbuttons()
   xcord = 56
   ycord = 66
   --Draw highlight 
-  rect(56,66,56+16,66+16,11)
+  rect(56,66,56+16,66+16,7)
 
   --draw arrows
   spr(141,10,74)
