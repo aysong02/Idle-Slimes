@@ -2,14 +2,14 @@
 function opening_init()
     opening_text = {
         "talking to yourself:\nthe first thing i do when i \nwake up is water my plants",
-        -- "talking to yourself:\nluckily i just harvested my\ncrop so theres no need for it",
-        -- "talking to yourself:\ni do miss my slimes that\nran off",
-        -- "talking to yourself:\nhopefully they were okay in \nthe rain",
-        -- "talking to yourself:\ni have grown to care a lot \nabout my slimes.",
-        -- "talking to yourself:\nto be honest i don't even know \nif they acknowledge me",
-        -- "talking to yourself:\nwell theres no use in crying \nover spilt milk",
-        -- "talking to yourself:\ni heard there was a new slime\nshop down the street",
-        -- "talking to yourself:\nmaybe i should go check it out\nand try slime farming again",
+        "talking to yourself:\nluckily i just harvested my\ncrop so theres no need for it",
+        "talking to yourself:\ni do miss my slimes that\nran off",
+        "talking to yourself:\nhopefully they were okay in \nthe rain",
+        "talking to yourself:\ni have grown to care a lot \nabout my slimes.",
+        "talking to yourself:\nto be honest i don't even know \nif they acknowledge me",
+        "talking to yourself:\nwell theres no use in crying \nover spilt milk",
+        "talking to yourself:\ni heard there was a new slime\nshop down the street",
+        "talking to yourself:\nmaybe i should go check it out\nand try slime farming again",
     }
     reading = false
     tb_init(0, opening_text)

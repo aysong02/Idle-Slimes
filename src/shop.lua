@@ -15,7 +15,7 @@ function shop_init()
       {
         sprite = 172,
         name = "crop plot",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        desc = "adds a new plot for you to \nfarm more crops!",
         price = 100,
         bigItem = 1,
         quantity = 1,
@@ -34,7 +34,7 @@ function shop_init()
       {
         sprite = 001,
         name = "Green slime",
-        desc = "A common slime, nothing special",
+        desc = "a common slime, nothing special",
         price = 50,
         color = {},
         bigItem = 0,
@@ -64,7 +64,7 @@ function shop_init()
       {
         sprite = 001,
         name = "Blue slime",
-        desc = "A rare slime but this one\n has not eaten a dragon ",
+        desc = "a rare slime but this one\nhas not eaten a dragon",
         price = 1000,
         color = {[11]=12, [10]=13, [3]=1},
         bigItem = 0,
@@ -83,7 +83,7 @@ function shop_init()
       {
         sprite = 170,
         name = "blood rice seeds",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        desc = "blood rice crops seeds that \ncan be harvested and \nis perfect for slime feed",
         price = 10,
         bigItem = 1,
         quantity = 1,
@@ -103,7 +103,7 @@ function shop_init()
       {
         sprite = 170,
         name = "berry drop seeds",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        desc = "berry drop crop seeds that \nbear nutritious fruit and is \nvery prickly",
         price = 50,
         bigItem = 1,
         quantity = 1,
@@ -123,7 +123,7 @@ function shop_init()
       {
         sprite = 170,
         name = "star egg seeds",
-        desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
+        desc = "star egg crop seeds whose \nfruit is said to hatch at high \ntemperatures with a pop!",
         price = 500,
         bigItem = 1,
         quantity = 1,
