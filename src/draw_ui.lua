@@ -44,9 +44,10 @@ function update_slibuttons()
     -- feed slimes
     local tempitem = inventory[inventory_select_no+1]
     for slime in all(slimes) do
+        --poke slimes
         if collision_aabb(cursor, slime) and click_press() then
-            if slime.happiness <= 20 then 
-                slime.happiness += 10
+            if slime.happiness <= 15 then 
+                slime.happiness += 15
             end
             break
         end

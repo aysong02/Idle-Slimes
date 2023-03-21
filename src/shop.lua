@@ -84,7 +84,7 @@ function shop_init()
           name = "blood rice",
           desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
           bigItem = 0,
-          quantity = 1,
+          quantity = 3,
           item_type = item_types.food,
           happy_val = 10
         }
@@ -104,7 +104,7 @@ function shop_init()
           name = "berry drop",
           desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
           bigItem = 0,
-          quantity = 1,
+          quantity = 5,
           item_type = item_types.food,
           happy_val = 25
         }
@@ -124,7 +124,7 @@ function shop_init()
           name = "star egg",
           desc = "Londuasnugnufnsnjnobagognfoangiodnaiongongkono",
           bigItem = 0,
-          quantity = 1,
+          quantity = 5,
           item_type = item_types.food,
           happy_val = 100
         }
