@@ -39,7 +39,7 @@ function shop_init()
         color = {},
         bigItem = 0,
         item_type = item_types.slime,
-        poop_value = 5
+        poop_value = 3
       },
       {
         sprite = 001,
@@ -49,7 +49,7 @@ function shop_init()
         color = {[11]=8, [10]=9, [3]=2},
         bigItem = 0,
         item_type = item_types.slime,
-        poop_value = 5,
+        poop_value = 8,
       },
       {
         sprite = 001,
